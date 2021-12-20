@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+
+    #recipient_section{
+    border: 2px solid #902d56;
+    border-radius: 10px;
+    display: flex;
+    margin-top: 50px;
+    height: 500px;
+    background-color: #e6eced;
+    }
+    
+    
+    #rec_left_container{
+        border: 1px solid green;
+        height: 450px;
+        flex:  1;
+        margin: auto;
+       
+    
+    }
+    
+    #profilepic_container{
+        border-radius: 10px;
+        /* border: 1px solid darkseagreen; */
+        height: 400px;
+        width: 300px;
+        margin: auto;
+       
+    }
+    
+    #profilepic{
+        border-radius: 10px;
+        /* border: 1px solid darkseagreen; */
+        height: 400px;
+        width: 300px;
+        margin: auto;
+        
+       
+    }
+    
+    #location{
+       text-align: center;
+       font-size: 25px;
+       margin-top: 10px;
+    }
+    
+    #rec_right_container{
+        border: 1px solid red;
+        height: 450px;
+        width: 200px;
+        
+        flex:  2;
+    
+    }
+</style>
+
+
+    <div class="container" id="recipient_section">
+        <div id="rec_left_container"> 
+            <div id="rec_left_content">
+                <div id="profilepic_container">
+                    <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
+                    <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
+                    <img src="{{session.get('image')}}" id="profilepic" />
+                </div>
+                <div id="location">
+                <i class="fas fa-map-marker-alt" style="color: red;"></i>
+                <span>Lagos</span>
+                </div>
+            </div>
+
+        </div>
+            
+        <div id="rec_right_container">
+        <h1>TARGET:</h1>
+        <h1>DONATIONS:</h1>
+        <h1>RAISED:</h1>
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %} 

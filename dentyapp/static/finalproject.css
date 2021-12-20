@@ -1,0 +1,1889 @@
+
+/*#logotext{
+text-anchor: none;
+font-size: 15px;
+}*/
+/* 
+@font-face {
+	font-family: dongle, sans-serif;
+	src: url(Dongle-Regular.ttf);
+} */
+body{
+	font-family: dongle, sans-serif;
+	/* font-size: 30px; */
+	/* background-color: #f7fff7; */
+}
+
+#contactmenu{
+	/*border: 1px solid red;*/
+	height: 50px;
+	max-width: 900px;
+	margin: auto;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+#emptydiv{
+	flex: 1;
+	/*background: red;*/
+}
+
+
+#contactbox{
+	flex: 1;
+	background: #ece4db;
+	margin-top: 20px;
+
+	display: inline-block;
+
+
+}
+
+.contact{
+	padding: 20px;
+	margin-left: 10px;
+	text-align: center;
+	font-size: 20px;
+	font-family: dongle, sans-serif;
+	color: dimgrey;
+
+
+}
+
+.contact:hover{
+	
+	color: dimgrey;
+
+
+}
+
+.socialicon{
+	/*margin-left: 10px;*/
+/*	margin-right: 20px;
+	margin-top: 20px;*/
+	/*padding-top: 5px;*/
+	padding-left: 15px;
+	text-align: center;
+	font-size: 15px;
+	display: inline-block;
+	color: dimgrey;
+
+}
+
+#logobox{
+	flex: 1;
+	/*background: red;*/
+}
+
+#dent{
+/* border: 1px solid #ea3546; */
+width: 100px;
+height: 60px;
+/* margin-bottom: 10px; */
+/*margin-left: 5px;*/
+padding-top: 7px;
+/*background-image: url(images/client.jpeg);*/
+/*background-position: center;
+background-size: contain;*/
+text-align: center;
+font-size: 35px;
+font-family: dongle, sans-serif;
+display: inline-block;
+color: white;
+/*background: grey;*/
+}
+
+#dent a {
+	text-decoration: none;
+}
+
+#dent a:hover {
+color: #8f2d56;
+}
+
+#tooth{
+	display: inline-block;
+	font-size: 20px;
+	color: white;
+	margin-top: 10px;
+}
+
+#navbarcontainer{
+	height: 60px;
+	width: 900px;
+	margin: auto;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	background: #ea3546;
+
+}
+#navbar{
+	flex: 3;
+	text-align: left;
+	margin-top: 15px;
+	/*background: green;*/
+}
+
+
+div ul li{
+	
+	/*border: 1px solid red;*/
+	/*border-radius: 10px 0px 10px 0px;*/
+	/*width: 70px;*/
+	height: 15px;
+	list-style-type: none;
+	/*text-align: center;*/
+	text-decoration: none;
+	display: inline-block;
+	padding: 0px 10px 0px 20px;
+	font-size: 25px;
+	font-family: dongle, sans-serif;
+
+}	
+
+li a:hover{
+	color: #8f2d56;
+	text-decoration: none;
+}
+
+li:hover{
+	color: white;
+}
+
+
+a{
+	/* text-decoration: none; */
+	color: white;
+}
+
+
+
+.dropbtn {
+	/* background-color: #3498DB; */
+color: white;
+padding: 16px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+}
+  
+.dropbtn:hover, .dropbtn:focus {
+	color: #8f2d56;
+}
+  
+.dropdown {
+margin-right: 30px;
+margin-top: 4px;
+color: #ffffff;
+font-size: 20px;
+/* position: relative; */
+/* display: inline-block; */
+}
+  
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+overflow: auto;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+
+}
+  
+.dropdown-content a {
+color: black;
+padding-left: 12px;
+text-decoration: none;
+display: block;
+font-size: 25px;
+}
+  
+.dropdown a:hover 
+{background-color: #ddd;
+}
+  
+.show {display: block;
+}
+
+
+
+/* 
+
+.fa-user{
+margin-right: 30px;
+margin-top: 22px;
+color: #ffffff;
+font-size: 20px;
+
+} */
+
+
+#donate_box{
+flex: 1;
+text-align: center;
+height: 60px;
+width: 150px;
+/* margin-top: 10px; */
+padding-top: 9px;
+color: white;
+font-size: 30px;
+font-family: dongle, sans-serif;
+background: #8f2d56;
+}
+
+#donate a {
+text-decoration: none;
+}
+
+#donate:hover {
+color: #ea3546;
+}
+
+
+
+/* --------------------------------------SECTION 1-------------------------------------------------- */
+
+
+.section1{
+	/* border: 1px solid green; */
+	/* height: 650px; */
+	
+	/*width: 100%;*/
+	display: flex;
+	/*background: yellow;*/
+	/*animation: fadeInUp;
+	animation-duration: 2s;*/
+	/*background-image: ;*/
+}
+
+.leftcontainer{
+	
+flex:  1;
+list-style-type: none;
+display: inline-block;
+	/* background: green; */
+
+}
+
+.middlecontainer{
+	flex:  1;
+	list-style-type: none;
+	display: inline-block;
+	/* background: pink; */
+}
+
+.rightcontainer{
+	flex:  1;
+	display: inline-block;
+	/* background: red; */
+}
+
+
+
+
+/*LEFT CONTAINER IMAGES*/
+
+#leftimage1{
+
+width: 55px;
+height: 55px;
+margin-top: 0px;
+margin-left: 10px;
+animation: fadeInLeft;
+animation-duration: 1s;
+/* background-image: url(dentyimages/1.jpeg); */
+/*background-position: center;
+background-size: contain;*/
+list-style-type: none;
+display: inline-block;
+/* background: white; */
+
+}
+
+#leftimage2{
+width: 153px;
+height: 105px;
+margin-top: 0px;
+margin-left: 20px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: hotpink;*/
+
+}
+
+#leftimage3{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: slateblue;*/
+
+}
+
+#leftimage4{
+width: 55px;
+height: 55px;
+margin-top: 0px;
+margin-left: 30px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: palegreen;*/
+}
+
+#leftimage5{
+width: 104px;
+height: 74px;
+margin-bottom: 0px;
+margin-left: 20px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: blue;*/
+
+}
+
+#leftimage6{
+width: 153px;
+height: 105px;
+margin-left: 10px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: rebeccapurple;*/
+	
+}
+
+
+#leftimage7{
+width: 104px;
+height: 74px;
+margin-left: 10px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+/*background: greenyellow;*/
+}
+
+
+
+#leftimage8{
+width: 153px;
+height: 105px;
+margin-left: 0px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/1.jpeg);
+background-position: center;
+background-size: cover;
+/*background: purple;*/
+}
+
+
+#leftimage9{
+width: 55px;
+height: 55px;
+margin-left: 10px;
+/*margin-bottom: 900px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/2.jpeg);
+background-position: center;
+background-size: cover;
+/*background: red;*/
+	
+}
+
+
+#leftimage10{
+width: 81px;
+height: 105px;
+margin-left: 20px;
+/*margin-bottom: 900px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/4.jpeg);
+background-position: center;
+background-size: cover;
+background: deeppin/*k*/;
+	
+}
+
+
+#leftimage11{
+width: 104px;
+height: 74px;
+margin-left: 30px;
+/*margin-bottom: 1000px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+
+/*background: yellow;*/
+	
+}
+
+
+
+#leftimage12{
+width: 81px;
+height: 105px;
+margin-left: 5px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/8.jpeg);
+background-position: center;
+background-size: cover;
+/*background: black;*/
+	
+}
+
+
+#leftimage13{
+width: 106px;
+height: 64px;
+margin-left: 10px;
+/*margin-top: 3px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/5.jpeg);
+background-position: center;
+background-size: cover;
+/*background: #DE7C51;*/
+}
+
+
+#leftimage14{
+width: 153px;
+height: 105px;
+margin-left: 10px;
+/*margin-top: 2px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/29.jpeg);
+background-position: center;
+background-size: cover;
+/*background: #DE7C51;*/
+	
+}
+
+
+#leftimage15{
+width: 55px;
+height: 55px;
+margin-left: 30px;
+/*margin-top: 321px;*/
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/20.jpeg);
+background-position: center;
+background-size: cover;
+
+/*background: #DE7C51;*/
+	
+}
+
+#leftimage16{
+width: 104px;
+height: 64px;
+margin-left: 15px;
+margin-bottom: 20px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/28.jpeg);
+background-position: center;
+background-size: cover;
+/*background: limegreen;*/
+	
+}
+
+
+#leftimage17{
+width: 153px;
+height: 105px;
+/*margin-left: 943px;*/
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/7.jpeg);
+background-position: center;
+background-size: cover;
+/*background: lemonchiffon;*/
+	
+}
+
+
+#leftimage18{
+width: 55px;
+height: 55px;
+margin-left: 5px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/46.jpeg);
+background-position: top;
+background-size: cover;
+/*background: aquamarine;*/
+
+	
+}
+
+#leftimage19{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/6.jpeg);
+background-position: center;
+background-size: cover;
+/*background: blue;*/
+	
+}
+
+#leftimage20{
+width: 104px;
+height: 74px;
+/*margin-left: 943px;*/
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 1s;
+list-style-type: none;
+display: inline-block;
+/* background-image: url(dentyimages/21.jpeg); */
+background-position: center;
+background-size: cover;
+/* background: pink; */
+	
+}
+
+
+#leftimage21{
+width: 55px;
+height: 55px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/42.jpeg);
+background-position: center;
+background-size: cover;
+/*background: grey;*/
+	
+}
+
+#leftimage22{
+width: 104px;
+height: 74px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInLeft;
+animation-duration: 2s;
+list-style-type: none;
+display: inline-block;
+background-image: url(dentyimages/9.jpeg);
+background-position: top;
+background-size: cover;
+/*background: purple;*/
+	
+}
+
+/*--------------------MIDDLE CONTAINER------------------------*/
+/*--------------------MIDDLE CONTAINER------------------------*/
+
+/*TOP IMAGES*/
+
+#topimage1{
+width: 104px;
+height: 81px;
+margin-top: 0px;
+margin-left: 10px;
+animation: fadeInDown;
+animation-duration: 2s;
+display: inline-block;
+/*background: black;*/
+
+}
+
+#topimage2{
+width: 153px;
+height: 105px;
+margin-top: 0px;
+margin-left: 20px;
+animation: fadeInDown;
+animation-duration: 2s;
+display: inline-block;
+
+/*background: #DE7C51;*/
+
+}
+
+#topimage3{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 0px;
+animation: fadeInDown;
+animation-duration: 2s;
+display: inline-block;
+
+/*background: white;*/
+
+}
+
+/*#topimage4{
+width: 55px;
+height: 55px;
+margin-top: 0px;
+margin-left: 30px;
+animation: fadeInDown;
+animation-duration: 1s;
+display: inline-block;
+
+background: red;
+}
+
+#topimage5{
+width: 104px;
+height: 74px;
+margin-bottom: 0px;
+margin-left: 50px;
+animation: fadeInDown;
+animation-duration: 1s;
+display: inline-block;
+background: blue;
+
+}
+
+#topimage6{
+width: 153px;
+height: 105px;
+margin-left: 60px;
+margin-top: 0px;
+animation: fadeInDown;
+animation-duration: 1s;
+display: inline-block;
+background: yellow;
+	
+}*/
+
+
+
+/*SIGN UP BUTTONS*/
+
+#readytogivesomeone{
+/*min-width: 300px;*/
+/*height: 50px;*/
+/*margin: auto;*/
+/*display: inline-block;*/
+
+margin-top: 70px;
+text-align: center;
+/*background: #289B8D;*/
+font-family: dongle, sans-serif;
+font-size: 39px;
+
+}
+
+
+#loginbar{
+border-radius: 20px 20px 20px 20px;
+width: 100px;
+height: 40px;
+margin-left: 130px;
+margin-right: 10px;
+text-align: center;
+padding: 5px;
+/*margin-top: 10px;*/
+/*margin: auto;*/
+display: inline-block;
+background: #8f2d56;
+color: white;
+font-size: 25px;
+font-family: dongle, sans-serif;
+}
+
+
+
+
+
+/* Bordered form */
+form {
+	border: 3px solid #f1f1f1;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+  }
+  
+  
+button {
+	background-color: #8f2d56;
+	color: white;
+	padding: 14px 20px;
+	margin-left: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 300px;
+	font-size: 20px;
+}
+  
+button:hover {
+	opacity: 0.8;
+}
+  
+
+.cancelbtn {
+	width: auto;
+	padding: 5px 10px;
+	background-color: #f44336;
+}
+  
+.imgcontainer {
+	text-align: center;
+	margin: 24px 0 12px 0;
+}
+  
+  /* Avatar image */
+  img.avatar {
+	width: 40%;
+	border-radius: 50%;
+  }
+  
+  /* Add padding to containers */
+  .container {
+	padding: 16px;
+  }
+  
+  /* The "Forgot password" text */
+  span.psw {
+	float: right;
+	padding-top: 16px;
+  }
+  
+
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	/* position: fixed; Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	padding-top: 60px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button (x) */
+  .close {
+	position: absolute;
+	right: 25px;
+	top: 0;
+	color: #000;
+	font-size: 40px;
+	font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: red;
+	cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+  .animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+	from {-webkit-transform: scale(0)} 
+	to {-webkit-transform: scale(1)}
+  }
+	
+  @keyframes animatezoom {
+	from {transform: scale(0)} 
+	to {transform: scale(1)}
+  }
+
+
+
+#signupbar{
+/*	border: 1px solid red;*/
+border-radius: 20px 20px 20px 20px;
+width: 100px;
+height: 40px;
+text-align: center;
+padding: 5px;
+margin-left: 5px;
+/*margin-bottom: 400px;*/
+display: inline-block;
+color: white;
+font-size: 25px;
+font-family: dongle, sans-serif;
+background: #8f2d56;
+}
+
+
+/*BOTTOM IMAGES*/
+
+
+#buttomimage1{
+width: 104px;
+height: 64px;
+margin-left: 15px;
+margin-top: 7px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/43.jpeg);
+background-position: center;
+background-size: cover;
+/*background: limegreen;*/
+	
+}
+
+#buttomimage2{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 7px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/15.jpeg);
+background-position: center;
+background-size: cover;
+/*background: blue;*/
+	
+}
+
+
+#buttomimage3{
+width: 55px;
+height: 55px;
+margin-left: 5px;
+margin-top: 0px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/47.jpeg);
+background-position: center;
+background-size: cover;
+/*background: aquamarine;*/
+	
+}
+
+
+#buttomimage4{
+width: 153px;
+height: 105px;
+/*margin-left: 943px;*/
+margin-top: 0px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/37.jpeg);
+background-position: center;
+background-size: cover;
+/*background: lemonchiffon;*/
+	
+}
+
+
+#buttomimage5{
+width: 153px;
+height: 105px;
+/*margin-left: 943px;*/
+margin-top: 0px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/35.jpeg);
+background-position: center;
+background-size: cover;
+/*background: red;*/
+	
+}
+
+
+#buttomimage6{
+width: 55px;
+height: 55px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/19.jpeg);
+background-position: center;
+background-size: cover;
+/*background: grey;*/
+	
+}
+
+#buttomimage7{
+width: 104px;
+height: 74px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInUp;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/39.jpeg);
+background-position: top;
+background-size: cover;
+/*background: purple;*/
+	
+}
+
+
+/*--------------------RIGHT CONTAINER------------------------*/
+
+/*RIGHT IMAGES*/
+
+#rightimage1{
+width: 153px;
+height: 105px;
+margin-top: 0px;
+margin-left: 20px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+
+/*background: #DE7C51;*/
+
+}
+#rightimage2{
+width: 55px;
+height: 55px;
+margin-top: 0px;
+margin-left: 10px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: black;*/
+
+}
+
+
+
+#rightimage3{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: white;*/
+
+}
+
+#rightimage4{
+width: 55px;
+height: 55px;
+margin-top: 0px;
+margin-left: 30px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: red;*/
+}
+
+#rightimage5{
+width: 104px;
+height: 74px;
+margin-bottom: 0px;
+margin-left: 20px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: blue;*/
+
+}
+
+#rightimage6{
+width: 153px;
+height: 105px;
+margin-left: 10px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: pink;*/
+	
+}
+
+
+#rightimage7{
+width: 104px;
+height: 74px;
+margin-left: 10px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: yellow;*/
+}
+
+
+
+#rightimage8{
+width: 153px;
+height: 105px;
+margin-left: 0px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: purple;*/
+}
+
+
+#rightimage9{
+width: 55px;
+height: 55px;
+margin-left: 10px;
+/*margin-bottom: 900px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+/*background: red;*/
+	
+}
+
+#rightimage10{
+width: 104px;
+height: 74px;
+margin-left: 30px;
+/*margin-bottom: 1000px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/13.jpeg);
+background-position: top;
+background-size: cover;
+/*background: yellow;*/
+	
+}
+
+#rightimage11{
+width: 81px;
+height: 105px;
+margin-left: 20px;
+/*margin-bottom: 900px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/40.jpeg);
+background-position: top;
+background-size: cover;
+/*background: deeppink;*/
+	
+}
+
+
+#rightimage12{
+width: 81px;
+height: 105px;
+margin-left: 5px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/27.jpeg);
+background-position: center;
+background-size: cover;
+/*background: black;*/
+	
+}
+
+
+#rightimage13{
+width: 106px;
+height: 64px;
+margin-left: 10px;
+/*margin-top: 3px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/10.jpeg);
+background-position: center;
+background-size: cover;
+/*background: #DE7C51;*/
+	
+}
+
+
+#rightimage14{
+width: 153px;
+height: 105px;
+margin-left: 10px;
+/*margin-top: 2px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/30.jpeg);
+background-position: center;
+background-size: cover;
+/*background: #DE7C51;*/
+	
+}
+
+
+#rightimage15{
+width: 55px;
+height: 55px;
+margin-left: 30px;
+/*margin-top: 321px;*/
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/51.jpeg);
+background-position: center;
+background-size: cover;
+/*background: #DE7C51;*/
+	
+}
+
+#rightimage16{
+width: 104px;
+height: 64px;
+margin-left: 15px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/44.jpeg);
+background-position: top;
+background-size: cover;
+/*background: limegreen;*/
+	
+}
+
+
+#rightimage17{
+width: 153px;
+height: 105px;
+/*margin-left: 943px;*/
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/38.jpeg);
+background-position: center;
+background-size: cover;
+/*background: lemonchiffon;*/
+	
+}
+
+
+#rightimage18{
+width: 55px;
+height: 55px;
+margin-left: 5px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/49.jpeg);
+background-position: center;
+background-size: cover;
+/*background: aquamarine;*/
+	
+}
+
+#rightimage19{
+width: 81px;
+height: 105px;
+margin-left: 30px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/14.jpeg);
+background-position: center;
+background-size: cover;
+/*background: blue;*/
+	
+}
+
+#rightimage20{
+width: 104px;
+height: 74px;
+margin-left: 0px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/18.jpeg);
+background-position: up;
+background-size: cover;
+/*background: hotpink;*/
+	
+}
+
+
+#rightimage21{
+width: 55px;
+height: 55px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/12.jpeg);
+background-position: center;
+background-size: cover;
+/*background: grey;*/
+	
+}
+
+#rightimage22{
+width: 104px;
+height: 74px;
+margin-left: 43px;
+margin-top: 0px;
+animation: fadeInRight;
+animation-duration: 2s;
+display: inline-block;
+background-image: url(dentyimages/26.jpeg);
+background-position: top;
+background-size: cover;
+/*background: purple;*/
+	
+}
+
+
+/*--------------------SECTION 2 CONTENT------------------------*/
+/* 
+.section2{
+	border: 1px solid green;
+	height: 200px;
+	width: 100%;
+	display: flex;
+	background: yellow;
+	animation: fadeInUp;
+	animation-duration: 2s;
+	
+} */
+
+
+/* #donationbrief{
+border: 1px solid green;
+height: 200px;
+width: 100%;
+margin-right: auto;
+margin-left: auto;
+background-color:#ea3546;
+background-image: url(dentyimages/svg1.svg);
+display: flex;
+
+} */
+
+
+/* 
+#box1{
+border: 1px solid #8f2d56;
+height: 150px;
+width: 150px;
+flex: 1;
+
+} */
+
+
+/* #box2{
+border: 1px solid #8f2d56;
+height: 150px;
+width: 150px;
+flex: 1;
+} */
+/* 
+#box3{
+border: 1px solid #8f2d56;
+height: 150px;
+width: 150px;
+flex: 1;
+} */
+
+
+
+/* #box4{
+border: 1px solid #8f2d56;
+height: 150px;
+width: 150px;
+flex: 1;
+} */
+
+/* #section3{
+border: 1px solid blue;
+height: 500px;
+width: 100%;
+display: flex;
+flex-direction: row;
+text-align: center;
+font-family: dongle-bold, sans-serif;
+font-size: 25px;
+} */
+
+/* ----------------------------------------------------- SECTION 3 ------------------------------------------- */
+
+
+.section3{
+/* border: 1px solid green; */
+height: 580px;
+width: 100%;
+display: flex;
+background-color: #FFFFFF;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23F9F9F9' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23F9F9F9'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}	
+	
+
+
+#sec3_left_container{
+/* border: 1px solid green; */
+height: 580px;
+/* width: 300px; */
+flex: 1;
+
+
+}
+
+#sec3_left_content{
+/* border: 1px solid black; */
+height: 350px;
+width: 400px;
+margin: auto;
+text-align: center;
+margin-top: 20px;
+padding-top: 20px;
+}
+
+
+/* #box5image{
+border: 1px solid black;
+height: 500px;
+width: 450px;
+background-image: url(dentyimages/d1.jpeg);
+background-size: cover;
+background-position: center;
+
+} */
+
+#donations_received{
+	/* border: 1px solid blue; */
+	height: 100px;
+	width: 150px;
+	margin: auto;
+	margin-right: 80px;
+	display: inline-block;
+	
+	
+}
+#smallbox1{
+	background: cornflowerblue;
+	height: 50px;
+	width: 50px;
+}
+
+#amount_donated{
+	/* border: 1px solid blue; */
+	height: 100px;
+	width: 150px;
+	display: inline-block;
+}
+
+#smallbox2{
+	background: darkseagreen;
+	height: 50px;
+	width: 50px;
+}
+
+
+#trending_campaigns{
+	/* border: 1px solid blue; */
+	height: 100px;
+	width: 150px;
+	display: inline-block;
+	margin-right: 80px;
+	margin-top: 100px;
+	
+}
+
+#smallbox3{
+	/* border: 1px solid red; */
+	height: 50px;
+	width: 50px;
+	background: goldenrod;
+}
+
+
+#reviews{
+	/* border: 1px solid blue; */
+	height: 100px;
+	width: 150px;
+	display: inline-block;
+}
+
+
+#smallbox4{
+	/* border: 1px solid red; */
+	height: 50px;
+	width: 50px;
+	background: yellowgreen;
+}
+
+	
+#sec3_right_container{
+/* border: 1px solid blue; */
+height: 580px;
+/* font-family: dongle, sans-serif; */
+/* width: 150px; */
+flex: 1;
+/* background-color: #99582a; */
+}
+
+
+
+#sec3_right_content{
+	/* border: 1px solid red; */
+	padding-top: 30px;
+	margin: auto;
+	margin-top: 200px;
+	height: 300px;
+	width: 500px;
+	/* font-size: 50px; */
+	/* font-family: dongle-bold; */
+	text-align: center;
+	
+}
+
+/* #box6image{
+	border: 1px solid black;
+	height: 200px;
+	width: 300px;
+	background-image: url(dentyimages/d1.jpeg);
+} */
+
+
+#right_container_donatenow{
+/*	border: 1px solid red;*/
+border-radius: 5px;
+width: 200px;
+height: 50px;
+text-align: center;
+padding: 5px;
+/* margin-left: 5px; */
+margin: auto;
+/*margin-bottom: 400px;*/
+display: inline-block;
+color: white;
+font-size: 30px;
+font-family: dongle, sans-serif;
+background: #8f2d56;
+}	
+
+
+/* ----------------------------------------------------- SECTION 4 ------------------------------------------- */
+
+
+/* .section4{
+	border: 1px solid green;
+	height: 580px;
+	width: 100%;
+	display: flex;
+	background: red; 
+	animation: fadeInUp;
+	animation-duration: 2s;
+	
+} */
+
+
+/* #latestcampaigns{
+	text-align: center;
+	font-family: dongle, sans-serif;
+	font-size: 35px;
+	margin-top: 20px;
+}
+
+/* 
+#section4box1{
+border: 1px solid green;
+height: 580px;
+width: 300px;
+flex: 1;
+background-color: #e9d758;
+}
+/* 
+
+#box5content{
+border: 1px solid black;
+height: 350px;
+width: 450px;
+margin: auto;
+background-image: url(dentyimages/d1.jpeg);
+background-size: cover;
+background-position: center; }*/
+
+
+
+/* #box6{
+border: 1px solid blue;
+height: 580px;
+font-family: dongle, sans-serif;
+width: 150px;
+flex: 1;
+background-color: #99582a;
+} */
+
+
+/* 
+#box6content{
+	border: 1px solid black;
+	padding-top: 30px;
+	margin: auto;
+	margin-top: 200px;
+	height: 300px;
+	width: 500px;
+	font-family: dongle-bold;
+	text-align: center;
+} */
+
+/* #box6donatenow{
+border: 1px solid red;
+border-radius: 20px 20px 20px 20px;
+width: 200px;
+height: 50px;
+text-align: center;
+padding: 5px;
+margin-left: 5px;
+margin: auto;
+margin-bottom: 400px;
+display: inline-block;
+color: white;
+font-size: 30px;
+font-family: dongle, sans-serif;
+background: #8f2d56;
+}	 */
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------- SECTION 5------------------------------------------- */
+
+.section5{
+	/* border: 1px solid green; */
+	/* height: 500px; */
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	/* background: red; */
+	/* animation: fadeInUp;
+	animation-duration: 2s; */
+	
+}
+
+
+.card-deck{
+	/* border: 1px solid blue; */
+	display: flex;
+	/* margin: auto; */
+	padding: 20px;
+	
+	
+}
+.zoom {
+	/* border: 1px solid red; */
+  /* padding: 50px; */
+  /* background-color: green; */
+  transition: box-shadow .1s; 
+  width: 300px;
+  height: 400px;
+  margin-right: 20px;
+  margin-left: 20px;
+  flex: 1;
+}
+
+.zoom:hover {
+	box-shadow: 0 0 11px rgba(33,33,33,.5); 
+}
+
+.card-img-top{
+/* border: 1px solid green; */
+height: 200px;
+width: 100%;
+}
+
+/* 
+.campaigntext{
+border: 1px solid green;
+height: 200px;
+width: 100%;	
+}  */
+
+.progress-bar{
+background-color: #902D56;
+}
+
+.card-donate-now{
+background-color: #ea3546;
+/* border: 1px solid red; */
+display: inline-block;
+/* height: 50px; */
+width: 100%;
+text-align: center;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.card-donate-now:hover{
+color: white;
+}
+
+.card-footer{
+height: 10px;
+text-align:center;
+margin-bottom: 10px;
+}
+
+
+#view_all_campaigns{
+text-align: right; 
+font-size: 25px; 
+color: #902d56;
+margin-right: 20px;
+text-decoration-line: none;
+}
+
+	
+
+#start_a_campaign{
+	/* border: 1px solid purple; */
+	height: 250px;
+	width: 100%;
+	background-color: #F1F4F8;
+		
+}
+
+.get_started{
+border-radius: 5px;
+width: 200px;
+height: 50px;
+text-align: center;
+padding: 5px;
+/* margin-left: 5px; */
+margin: auto;
+/*margin-bottom: 400px;*/
+display: inline-block;
+color: white;
+font-size: 30px;
+font-family: dongle, sans-serif;
+background: #8f2d56;
+}	
+
+
+
+
+.footer{
+	/* border: 1px solid purple; */
+	height: 300px;
+	width: 100%;
+	padding-top: 30px;
+	background-color: #49485b;
+	display: flex;
+	color: white;
+
+}
+
+#leftfooter{
+	/* border: 1px solid red; */
+	/* height: 200px; */
+	/* width: 200px; */
+	/* margin-top: 50px; */
+	flex: 1;
+}
+
+.footer_content{
+	/* border: 1px solid blue; */
+	/* height: 200px; */
+	text-align: center;
+	flex: 1;
+	
+}
+
+
+
+
+
+/*______________________ ABOUT US PAGE_________________________ */
+/*______________________ ABOUT US PAGE_________________________ */
+/*______________________ ABOUT US PAGE_________________________ */
+
+
+.jumbotron{
+height: 500px;
+margin-top: 50px;
+/* background-color: #ffffff; */
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='' cx='500' cy='100' r='40'/%3E%3Cpath transform='' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+background-attachment: fixed;
+background-size: cover;
+}
+
+#aboutusimage{
+border-radius: 20px;
+height: 200px;
+width: 400px;
+margin: auto;
+background-image: url(dentyimages/handstogether.jpeg);
+background-size: cover;
+background-position: center;
+
+}
+
+
+
+
+/*---------------------------------------- PROFILE PAGE----------------------------------- */
+/*---------------------------------------- PROFILE PAGE----------------------------------- */
+/*---------------------------------------- PROFILE PAGE----------------------------------- */
+
+.profile_details{
+	margin-left: auto;
+	
+}
+
+.tablink {
+	/* background-color: #c9ada7; */
+	color: white;
+	float: left;
+	/* border: none; */
+	/* outline: none; */
+	cursor: pointer;
+	/* padding: 14px 16px; */
+	font-size: 20px;
+	width: 25%;
+	
+  }
+  
+  /* .tablink:hover {
+	background-color: #9a8c98;
+  } */
+  
+  .tabcontent {
+	color: white;
+	display: none;
+	padding: 100px;
+	text-align: center;
+	
+	
+  }
+  
+#total_donations {
+background-color: #9a8c98;
+}
+
+#donated_amount {
+background-color:#277da1;
+
+}
+#saved_campaigns{
+background-color: #006466;
+
+}
+
+#campaign_history{
+background-color:#ed505d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+	span.psw {
+	  display: block;
+	  float: none;
+	}
+	.cancelbtn {
+	  width: 100%;
+	}
+  }

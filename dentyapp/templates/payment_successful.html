@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+
+<div id="start_a_campaign" class="jumbotron" style="text-align: center; height: 400px;">
+    
+<span style="font-size: 30px;">You did it, {{session.get('user')}}. </span><img src="{{url_for('static',filename='dentyimages/happytooth.png')}}" width="100" height="100">
+<h1>Thank You, For Your Donation!</h1>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

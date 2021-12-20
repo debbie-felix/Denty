@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+ 
+{% block content %}
+
+<style>
+.section5{
+    margin-left: 40px;
+    margin-top: 70px;
+    /* border: 1px solid red; */
+    flex-wrap: wrap;
+
+}
+
+
+</style>
+
+
+
+<div class="container-fluid section5">
+			
+    {% for recipient in recipients %}
+    <div class="card-deck">
+        
+        <div class="card zoom">
+            {%if recipient.post_image %}
+            <img src='{{recipient.post_image}}' class="card-img-top" alt="Card image cap">
+            {% else %}
+            <img src='/static/dentyimages/cavities.png' class="card-img-top" alt="Card image cap">
+            {% endif %}
+
+            <div class="card-body">
+                
+                <h5 class="card-title">{{recipient.post_title}}</h5>
+                
+                <p class="card-text">{{recipient.post_description }}</p>
+            </div>
+            
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style= "width: 65%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">65%
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <small class="text-muted">Last donation 25 mins ago</small>
+            </div>
+            <input type="hidden" id="recipientIdForDonation" value="{{recipient.rec_id}}" />
+            <a href= "{{url_for('recipient_profile', id=recipient.rec_id)}}" onClick="makePayment()"> 
+                <div>
+                    <span class="card-donate-now">Donate Now</span>
+                </div>
+            </a>
+        </div>
+    </div>	 
+    {% endfor %}
+</div>
+
+{% endblock content %}
+

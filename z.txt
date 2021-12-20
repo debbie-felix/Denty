@@ -1,0 +1,108 @@
+from flask import render_template,url_for,session,request,redirect,flash
+from dentyapp import app,db
+from dentyapp.mymodel import Users
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user',None)
+    return redirect('/')
+
+@app.route('/user/login', methods = ['GET', 'POST'])
+def login():
+    if request.method=='GET':
+        return render_template('user/login.html')
+    else:
+        email =request.form.get('email')
+        password =request.form.get('password')
+        x = db.session.query(Users).filter(Users.email==email).filter(Users.password==password).first
+        if x:
+            loggedin_user = x.id
+            session['user'] = loggedin_user
+            return redirect('/user/profile')
+        else:
+            flash('Invalid Credentials')
+            return url_for('login')
+
+
+
+@app.route('/', methods = ['GET','POST'])
+def home(): 
+    if request.method=='GET':
+        alldetails = db.session.query(Users).all()
+        return render_template('user/home.html',alldetails=alldetails)
+    else:
+        fname =request.form.get('fname')
+        lname =request.form.get('lname')
+        email =request.form.get('email')
+        password=request.form.get('password')
+        # state = request.form.get('state')
+        g=Users(fname=fname,lname=lname,email=email,password=password)
+        db.session.add(g)
+        db.session.commit()
+        session['user'] = g.id
+        flash('Registration was succesfull')
+        return redirect('/user/profile')
+
+
+   
+@app.route('/about-me')
+def about():
+    pwd = app.config['PASSWORD']
+    return render_template('user/about.html',pwd=pwd)
+
+
+@app.route('/user/profile')
+def userprofile():
+    loggedin_user = session.get('user')
+    if loggedin_user != None:
+        data = db.session.query().get(loggedin_user)
+        return render_template('user/about.html',data=data)
+    else: 
+        return 'Display login form'
+
+
+# @app.route('/gift')
+# def gift():
+#     if request.method=='GET':
+#         allgifts = db.session.query(State).all()
+#         return render_template('giftregistry.html',allgifts=allgifts)
+
+#     else:
+#         selected = request.form.getlist('item')
+#         quantity = request.form.getlist('quantity')
+#         if selected:
+#             k = 0
+#             for t in selected:
+#                 tot = quantity[k]
+                # statement = guest_gift.insert().values(gift_id=t,guest_id=loggedin_user,qty=tot)
+                # db.session.execute(statement)
+                # k = k + 1
+    #         db.session.commit()
+    #         flash ('Thank you for your donation')
+    #         return redirect('/user/profile')
+    #     else:
+    #         flash('Please slect at least one gift item')
+    #         return redirect('/user/profile')
+    # # else:
+    #     return redirect('/login')
+
+
+-------------File stack----------------
+
+    <script>
+
+	
+	  const uploadImageButton = document.querySelector('#uploaddemobutton');
+            uploadImageButton.addEventListener('click', function (e) {
+                const client = filestack.init('Aj2BUdO6uQB2eTi8TSO28z');
+                client.picker({
+                    onFileUploadFinished: function (file) {
+                        // document.querySelector('#profileImage').innerHTML = `<img src="${file.url}" />`;
+                        document.querySelector('#uploadedimage').value = file.url
+                        // document.querySelector('#profilepic').setAttribute('style', `background-image:url("${file.url}")`);
+                    }
+                }).open();
+            });
+
+    </script>

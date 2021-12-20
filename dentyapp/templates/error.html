@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<style>
+    .container-fluid{
+	display: flex;
+
+}
+.leftcontainer{
+	flex:  1;
+	list-style-type: none;
+	display: inline-block;
+    margin-top: 200px;
+    margin-left: 100px;
+
+
+}
+
+.rightcontainer{
+    /* border: 1px solid black; */
+    height: 800px;
+    min-width: 300px;
+    
+	flex:  2;
+	display: inline-block;
+	background: red;
+    background: url("{{url_for('static',filename='dentyimages/illus1.png')}}");
+    /* background-repeat: no-repeat; */
+}
+
+a:hover{
+	color: #ea3546;
+    text-decoration: none;
+    
+}
+
+#toothfairy1{
+font-size: 20px;
+}
+
+.errormessage{
+    margin-left: 100px;
+}
+
+ </style>
+
+    <div class="container-fluid">
+		<div class="leftcontainer">
+            <div class="errormessage">
+                    <h1 id="toothfairy">OOPS-A-DAISY!</h1>
+                    <p>We can't find what you are loooking for.</p>
+                    <span>Let's see if the</span> <span id="toothfairy1" >TOOTH FAIRY</span><span> can help. </span><br><br>
+                    <span>In the mean time, go to the</span> <button class="btn btn-warning"><a href="{{ url_for('home')}}"> home page </a></button>
+                    <p id="illustration"></p>
+
+                </div>  
+            </div>
+		<div class="rightcontainer">
+            <p id="illustration"></p> 
+    </div>          
+
+
+{% endblock content %}
+    <!-- <div id="mystory-column" style="border: 1px solid black; height: 300px;"> -->
+
+        
+    <!-- </div> -->
+	   

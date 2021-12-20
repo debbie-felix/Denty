@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- <div class="container">
+    <label for="fname"><b>Firstname</b></label>
+    <input id="fname" type="text" placeholder="Your Firstname" name="fname" required>
+
+    <label for="fname"><b>Lastname</b></label>
+    <input id="lname" type="text" placeholder="Your Lastname" name="lname" required>
+
+    <button id="btn" type="submit">Signup</button>
+
+</div> -->
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>state and lga</h3>
+            <div>
+                <label for="">select state</label>
+                <select name="allstates" id="allstates" class="form-control">
+                    <option value="">select</option>
+                    {% for i in records %}
+                    <option value="{{i.state_id}}">{{i.state_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    </div>
+    <div id="lgas"></div>
+</div>
+
+
+
+
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('#allstates').change(function(){
+            var state = $(this).val()
+            $.ajax({
+                url:"{{url_for('lga')}}",
+                data:'stateid=' +state,
+                data:'GET',
+                dataType:'text',
+                success:function(m){
+                    $('#lgas').html(m)
+                },
+                error:function(e){
+                    console.log(e)
+                }              
+            })
+        })
+    })
+
+
+
+      $document.ready(function(){
+
+        $('#btn').click(function(){     
+            var d = $('#quest').val()
+            var firstname = $('#fname').val()
+            var lastname = $('#lname').val()
+            var token = 'sss'
+            var durl = 'quest' +d+ '&first=' +firstname+'&last'+lastname+'&csrf_token'+token
+    
+            $.ajax({
+                data:'quest='+d,
+                url:"{{url_for('submitajax')}}",
+                type:'POST',
+                dataType:'text',
+                error:function(error){
+                    console.log(error)
+                },
+                beforeSend:function(){
+                    $('#btn').html('please wait....')
+                },
+                success:function(msg){
+                    $('#feedback').html(msg)
+                    $('#quest').val('')
+                    $('#feedback').addClass('text-danger')
+                    $('#btn').html('send')
+                }
+            })
+        })
+      })
+
+
+ 
+</script>
+
+
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,171 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<h1 style="text-align: center; margin-top: 50px;">We Need Some Information About You.</h1>
+<h1 style="text-align: center">Please Fill The Form Below:</h1>
+
+
+
+<form method="POST" action="{{url_for('recipient_signup')}}" enctype="multipart/form-data" class="modal-content animate form-row" id="form">
+    <!-- <input type="image" placeholder="Upload a pic" name="pic" required>
+    <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div> -->
+
+    <div class="container">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <input type="text" class="form-control" name="fname" id="fname" placeholder="Firstname">
+            </div>
+            <div class="form-group col-md-4">
+              <input type="text" class="form-control" name="lname" id="lname" placeholder="Lastname">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <textarea type="text" class="form-control" name="address" id="address" placeholder="Address"></textarea>
+            </div>
+        </div>
+
+           
+        <div class="form-row">
+            <div class="form-group col-md-6">
+            
+                <input type="text" class="form-control" name="city" id="city" placeholder="City">
+            </div>    
+        </div>  
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                
+                <select id="state" name="state" class="form-control">
+                  <option selected>State...</option>
+                  <option>Lagos</option>
+                  <option>Abuja</option>
+                  <option>Port Harcourt</option>
+                  <option>Akwa Ibom</option>
+                </select>
+            </div>
+        </div>
+        
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+                </div>
+            </div>
+         
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="post_title" id="post_title" placeholder="Title Of Your Request">
+                </div>
+            </div>
+
+    
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <textarea type="text" rows="5" class="form-control" name="post_desc" id="post_desc" placeholder="Give A Brief Description Of Your Request"></textarea>
+                </div>
+            </div>
+    
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="amount" id="amount" placeholder="How Much Do You Want To Raise?">
+                </div>
+            </div>
+          
+
+        
+         
+            
+            <input type="hidden" name="post_image" id="uploadedimage" required>
+
+            <button class="btn btn-outline-dark" type="button" id="uploaddemobutton" >Upload Your Image</button><br> <br>
+    
+
+            <button type="submit">Signup</button>
+    
+       
+        <!-- <input type="hidden" name="image" id="uploadedimage">
+
+        <button class="btn btn-outline-dark" type="file" id="uploaddemobutton" required>Upload Your Image</button><br> <br> -->
+
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      
+    </div>
+    
+</form>
+
+
+
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+
+	
+	  const uploadImageButton = document.querySelector('#uploaddemobutton');
+            uploadImageButton.addEventListener('click', function (e) {
+                const client = filestack.init('Aj2BUdO6uQB2eTi8TSO28z');
+                client.picker({
+                    onFileUploadFinished: function (file) {
+                        // document.querySelector('#profileImage').innerHTML = `<img src="${file.url}" />`;
+                        document.querySelector('#uploadedimage').value = file.url
+                        // document.querySelector('#profilepic').setAttribute('style', `background-image:url("${file.url}")`);
+                    alert ('Image Uploaded')
+                    }
+                }).open();
+            });
+
+    </script>
+ 
+<!-- 
+  <script type="text/javascript">
+
+      $document.ready(function(){
+        $('#btn').click(function(){  
+            var data2send = $('#form').serialize
+            alert(data2send)
+    
+            $.ajax({
+                data:'data2send=',
+                url:"{{url_for('submitajax')}}",
+                type:'POST',
+                dataType:'text',
+                error:function(error){
+                    console.log(error)
+                },
+                beforeSend:function(){
+                    $('#btn').html('please wait....')
+                },
+                success:function(msg){
+                    $('#feedback').html(msg)
+                    $('#quest').val('')
+                    $('#feedback').addClass('text-danger')
+                    $('#btn').html('send')
+                }
+            })
+        })
+      })
+
+
+  </script> -->
+
+{% endblock content %}

@@ -1,0 +1,539 @@
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<style>
+
+#recipient_section{
+/* border: 2px solid #902d56; */
+border-radius: 10px;
+display: flex;
+margin-top: 50px;
+height: 500px;
+background-color: #e6eced;
+}
+
+
+#rec_left_container{
+    /* border: 1px solid green; */
+    height: 450px;
+	flex:  1;
+    margin: auto;
+   
+
+}
+
+#profilepic_container{
+    border-radius: 10px;
+	/* border: 1px solid darkseagreen; */
+	/* height: 400px; */
+	width: 300px;
+    margin: auto;
+   
+}
+
+#profilepic{
+    border-radius: 10px;
+	/* border: 1px solid darkseagreen; */
+	height: 350px;
+	width: 300px;
+    /* margin: auto; */
+   
+}
+
+#location{
+   text-align: center;
+   font-size: 25px;
+   margin-top: 5px;
+}
+
+#rec_right_container{
+    /* border: 1px solid red; */
+    height: 450px;
+    width: 200px;  
+	flex:  2;
+
+}
+
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 345px;
+  border-radius: 10px 0px 0px 10px;
+  margin-top: 13px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  /* padding: 22px 16px; */
+  width: 90%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 11px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.reccontent {
+/* border: 1px solid green; */
+  float: left;
+  border-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 345px;
+  margin-top: 13px;
+  display: none;
+}
+
+/* Clear floats after the tab */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/* .btn{
+width: 100px;
+height: 50px;
+margin-top: 20px;
+border-radius: 10px;
+background-color: red;
+display: block;
+} */
+
+
+
+#recipient_section2{
+/* border: 1px solid black; */
+display: flex;
+margin-top: 10px;
+height: 350px;  
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+
+.recipient_section3{
+border: 2px solid lightgray;
+height: 400px;  
+}
+
+#photocontainer{
+    /* border: 2px solid red; */
+
+    display: flex;
+    margin: auto;
+    height: 320px;
+   
+   
+}
+
+#photo1{
+    flex: 1;
+    /* border: 1px solid blue; */
+    border-radius: 10px;
+    height: 300px;
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+
+
+}
+
+#photo2{
+    flex: 1;
+    /* border: 1px solid blue; */
+    border-radius: 10px;
+    height: 300px;
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+#photo3{
+    flex: 1;
+    /* border: 1px solid blue; */
+    border-radius: 10px;
+    height: 300px;
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+
+ </style>
+
+        <div class="container" id="recipient_section">
+            <div id="rec_left_container"> 
+                <div id="rec_left_content">
+                    <div id="profilepic_container">
+                        <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
+                        <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
+                        
+                        <img src="{{y.post_image}}" id="profilepic" />
+                    </div>
+                    <div id="location">
+                    <i class="fas fa-map-marker-alt" style="color: red;"></i>
+                    <span>Kano</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="rec_right_container">
+                <div class="tab tabcontainer">
+                    <button class="reclinks" onmouseover="openCity(event, 'contact_details')">Contact Details</button>
+                    <button class="reclinks" onmouseover="openCity(event, 'campaign_status')">Campaign_Status</button>
+                    <button class="reclinks" onmouseover="openCity(event, 'update')">Update</button>
+                </div>
+            
+                <div id="contact_details" class="reccontent">
+                    <h3>Name: {{y.fname}}</h3>
+                    <h3>phone: {{y.phone}}</h3>
+                    <h3>Email: {{y.email}}</h3>
+                    <h3>Address: {{y.address}}</h3>
+                </div>
+            
+                <div id="campaign_status" class="reccontent">
+                    <h3>Paris</h3>
+                    <p>Paris is the capital of France.</p>
+                </div>
+            
+                <div id="update" class="reccontent">
+                    <h3>Tokyo</h3>
+                    <p>Tokyo is the capital of Japan.</p>          
+                </div><br>
+                <!-- <button type="button" class="btn">Edit</button> -->
+
+            </div>
+            
+        </div>
+    </div> 
+
+
+
+    <form method="POST" action="{{url_for('recipient_signup')}}" enctype="multipart/form-data" id="form">
+    
+        <div class="container">
+            <label><b>Title</b></label><br>
+            <input type="text" name="post_title" id="post_title"> Title
+
+            
+            <label><b>Brief Description</b></label><br>
+
+            <textarea class="form-control" rows="5" cols="60" placeholder="Give a brief description of your request" id="post_desc" name="post_desc" required></textarea><br>
+            
+            <label><b>Upload an Image</b></label><br>
+            
+            <input type="hidden" name="image1" id="uploadedimage">
+
+            <button class="btn btn-outline-dark" type="file" id="uploaddemobutton" required>Upload Your Image</button><br> <br>
+    
+
+            <button type="submit">Update</button>
+    
+        </div>    
+    </form>
+
+
+
+
+     <h1 style="text-align: center; margin-top: 50px;">Your images</h1>
+        <div class="recipient_section3 container">
+            <div id="photocontainer">
+                <img src="{{y.post_image}}" id="photo1">
+                <img src="{{url_for('static',filename='dentyimages/55.jpeg')}}" id="photo2">
+                <img src="" id="photo3" >
+            </div> 
+            <div style="text-align: center;">
+                <label >Upload another image</label>
+                <input type="file" name="newimage" id="newimage">  
+            </div>
+        </div>
+ 
+    
+        <div class="recipient_section3 container"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script>
+        
+            
+              const uploadImageButton = document.querySelector('#uploaddemobutton');
+                    uploadImageButton.addEventListener('click', function (e) {
+                        const client = filestack.init('Aj2BUdO6uQB2eTi8TSO28z');
+                        client.picker({
+                            onFileUploadFinished: function (file) {
+                                // document.querySelector('#profileImage').innerHTML = `<img src="${file.url}" />`;
+                                document.querySelector('#uploadedimage').value = file.url
+                                // document.querySelector('#profilepic').setAttribute('style', `background-image:url("${file.url}")`);
+                            alert ('Image Uploaded')
+                            }
+                        }).open();
+                        
+                    });
+        
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p id="welcome">Welcome</p>
+
+        <button type="button" id= "clicker" class="btn btn-warning" onclick="likes()">Tell us more</button>
+
+<script type="text/javascript">
+
+let btnClk=document.getElementById('clicker');
+btnClk.addEventListener('click',function(){
+    document.getElementById('welcome').innerHTML='wjat';
+})
+
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <button type="button" id= "btnlike" class="btn btn-warning" onclick="likes()">2likes</button> -->
+
+
+        <!-- <button class="btn btn-success" onclick="progress()">Share Post</button> -->
+
+<!-- <script type="text/javascript">
+            counter = 0;
+            function likes(){
+                counter ++
+                alert(counter + "likes")
+            }
+
+
+
+var greetings = function(salutation){
+ alert ('Good morning ' +salutation)
+}
+greetings ('madam')
+
+const greet = (salutation) =>alert('Good morning ' +salutation)
+
+greetings ('Gentleman')
+
+counter = 1;
+const likes=() => document.getElementById('btnlike').innerHTML = counter;counter ++}
+const x=(salu, men) => salu + men 
+x(10,40)
+return (x (10,40))
+
+x = 'Ud'
+let msg = `Dear ${x},
+        I am very happy`
+        alert(x + msg)
+
+
+var project = {
+    myName: 'Deborah',
+    faveModule: '',
+    projectTitle: 'Denty',
+    progress(){
+        alert ('Project' +this.projectTitle+ 'is at 90 ')
+    }
+}
+
+// progress.language = 'English'
+project['language'] = 'English'
+console.log(project)
+// project.progress()
+
+class Customers {
+    constructor(fname,email,phone){
+       this.fullname = '';
+       this.email = '';
+        this.phone = '' ;
+
+    }
+    login(){
+alert('You are logged in ')
+    }
+    signup(){
+        alert ('You have registered')
+    }
+}
+
+class Admin extends Customers{
+
+}
+
+
+
+
+var cust = new customer()
+alert(cust.fullname)
+
+
+
+
+
+</script> -->
+
+<script type="text/javascript">
+
+    // let newfruits = []
+    // fruits.forEach(function(value,key){
+    //     // document.write('<li>'+ value + '<li>');
+    //     var t = (value.substr(0,1)).toUpperCase() + value.substr(1,(value.length -1))
+    //     newfruits.push(t)
+    // })
+    //     alert(newfruits)
+    // // document.write('</ul>')
+
+    // students = [10,20,27,41,50,32]
+
+    // let newscore = students.map(function(value,key){
+    //     return value + 20;
+    
+    
+    // })
+    // alert (newscore)
+
+// const score = [30,40,50,678]
+//     {score:60, name: 'Shola'},
+//     {score:80, name: 'Tunde'},
+//     {score:45, name: 'Rai'},
+//     {score:60, name: 'Seun'}]
+
+ 
+//     // var t = score.map(function(value,key))
+//     var new1 = students.filter(function(value,key){
+
+//         return > 100
+//        alert (score)
+//     })
+
+// const errmsg ={
+//     email:['invalid email format', 'email length is too short'],
+//     phone:['invalid phone']
+// }
+
+// let error_array = Object.values(errmsg);
+// let location_array = Object.keys(errmsg);
+// let item_array = Object.entries(errmsg);
+
+// alert(error_array)
+// console.log(error_array)
+
+
+// </script>
+
+
+
+
+{% endblock content %}
+
+<!-- has = variable
+do = method -->
+
+
+
+
+
+
+
+

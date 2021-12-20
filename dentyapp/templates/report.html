@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+<h2>Transaction Report</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Date</th>
+    </tr>
+
+{% if records: %}
+    {% for records %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{r.dcustomer}}</td>
+        <td>{{r.prod_details}}</td>
+        <td>{{r.qty}}</td>
+        <td>{{r.trans_date}}</td>
+        
+    </tr>
+    {%endfor%}
+{%endif%}
+</table>
+{%endblock%}

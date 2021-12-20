@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+
+<h1 style="text-align: center; margin-top: 50px;">We Need Some Information About You.</h1>
+<h1 style="text-align: center">Please Fill The Form Below:</h1>
+
+
+
+<form method="POST" action="{{url_for('recipient_signup')}}" enctype="multipart/form-data" class="modal-content animate" id="form">
+    <input type="image" placeholder="Upload a pic" name="pic" required>
+    <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <input  type="textarea" placeholder="Give a brief description of your request" id="post_desc" name="post_desc" required>
+        
+        <input  type="text" placeholder="Give a brief description of your request" id="post_desc" name="post_desc" required>
+
+        
+        
+        <input type="hidden" name="image" id="uploadedimage">
+
+        <button class="btn btn-outline-dark" type="file" id="uploaddemobutton" required>Upload Your Image</button><br> <br>
+
+        <button type="submit">Signup</button>
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <!-- <p id="profileImage">Hello</p> -->
+    </div>
+</form>
+
+</div>
+
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+
+	
+	  const uploadImageButton = document.querySelector('#uploaddemobutton');
+            uploadImageButton.addEventListener('click', function (e) {
+                const client = filestack.init('Aj2BUdO6uQB2eTi8TSO28z');
+                client.picker({
+                    onFileUploadFinished: function (file) {
+                        // document.querySelector('#profileImage').innerHTML = `<img src="${file.url}" />`;
+                        document.querySelector('#uploadedimage').value = file.url
+                        // document.querySelector('#profilepic').setAttribute('style', `background-image:url("${file.url}")`);
+                    }
+                }).open();
+            });
+
+    </script>
+ 
+
+
+{% endblock content %}
