@@ -34,8 +34,8 @@ background-color: #e6eced;
 }
 
 #profilepic{
-    border-radius: 10px;
-	/* border: 1px solid darkseagreen; */
+    border-radius: 50px;
+	border: 1px solid red;
 	height: 350px;
 	width: 300px;
     /* margin: auto; */
@@ -146,69 +146,30 @@ height: 350px;
 }
 
 
-.recipient_section3{
-border: 2px solid lightgray;
-height: 400px;  
+
+
+
+
+
+input{
+    font-size: 20px;
 }
-
-#photocontainer{
-    /* border: 2px solid red; */
-
-    display: flex;
-    margin: auto;
-    height: 320px;
-   
-   
-}
-
-#photo1{
-    flex: 1;
-    /* border: 1px solid blue; */
-    border-radius: 10px;
-    height: 300px;
-    width: 200px;
-    display: inline-block;
-    margin-right: 10px;
-
-
-}
-
-#photo2{
-    flex: 1;
-    /* border: 1px solid blue; */
-    border-radius: 10px;
-    height: 300px;
-    width: 200px;
-    display: inline-block;
-    margin-right: 10px;
-
-}
-#photo3{
-    flex: 1;
-    /* border: 1px solid blue; */
-    border-radius: 10px;
-    height: 300px;
-    width: 200px;
-    display: inline-block;
-    margin-right: 10px;
-
-}
-
 
  </style>
-
         <div class="container" id="recipient_section">
             <div id="rec_left_container"> 
                 <div id="rec_left_content">
                     <div id="profilepic_container">
-                        <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
-                        <!-- <img src="{{url_for('static',filename='dentyimages/51.jpeg')}}" id="profilepic"> -->
-                        
-                        <img src="{{y.post_image}}" id="profilepic" />
+                        {%if y.post_image %}
+                        <img src='{{y.post_image}}' id="profilepic">
+                        {% else %}
+                        <img src='/static/dentyimages/cavities.png' height="350px" width="300px" style="border-radius: 10px;">
+                        {% endif %}
+                        <!-- <img src="{{y.post_image}}" id="profilepic" /> -->
                     </div>
                     <div id="location">
                     <i class="fas fa-map-marker-alt" style="color: red;"></i>
-                    <span>Kano</span>
+                    <span>{{y.state}}</span>
                     </div>
                 </div>
 
@@ -216,26 +177,28 @@ height: 400px;
 
             <div id="rec_right_container">
                 <div class="tab tabcontainer">
-                    <button class="reclinks" onmouseover="openCity(event, 'contact_details')">Contact Details</button>
-                    <button class="reclinks" onmouseover="openCity(event, 'campaign_status')">Campaign_Status</button>
-                    <button class="reclinks" onmouseover="openCity(event, 'update')">Update</button>
+                    <button class="reclinks" onmouseover="openContent(event, 'contact_details')">Contact Details</button>
+                    <button class="reclinks" onmouseover="openContent(event, 'campaign_status')">Campaign_Status</button>
+                    <button class="reclinks" onmouseover="openContent(event, 'update')">Update</button>
                 </div>
             
                 <div id="contact_details" class="reccontent">
-                    <h3>Name: {{y.fname}}</h3>
-                    <h3>phone: {{y.phone}}</h3>
-                    <h3>Email: {{y.email}}</h3>
-                    <h3>Address: {{y.address}}</h3>
+                    <input type="text" placeholder="{{y.fname}} {{y.lname}}">
+                    <input type="text" placeholder="{{y.email}}">
+                    <input type="text" placeholder="{{y.phone}}">
+                    <input type="text" placeholder="{{y.address}}, {{y.city}}, {{y.state}}">
+                   
                 </div>
             
-                <div id="campaign_status" class="reccontent">
-                    <h3>Paris</h3>
-                    <p>Paris is the capital of France.</p>
+                <div id="campaign_status" class="reccontent" style="font-size: 30px; color: rgb(63, 62, 62);">   
+                    <p>TARGET: <span style="font-size: 17px;">₦</span>{{y.amount}}</p>
+                    <p>DONATIONS: {{donations.number_of_donations}}</p>
+                    <p>RAISED: {{donations.total_donations}} </p>
                 </div>
             
                 <div id="update" class="reccontent">
-                    <h3>Tokyo</h3>
-                    <p>Tokyo is the capital of Japan.</p>          
+                    
+                    <h3 style="color: rgb(63, 62, 62);">You will find latest updates here.</h3>          
                 </div><br>
                 <!-- <button type="button" class="btn">Edit</button> -->
 
@@ -246,32 +209,31 @@ height: 400px;
 
 
 
-    <form method="POST" action="{{url_for('recipient_signup')}}" enctype="multipart/form-data" id="form">
+    <form method="POST" action="{{url_for('start_campaign')}}" enctype="multipart/form-data" id="form">
     
-        <div class="container">
-            <label><b>Title</b></label><br>
-            <input type="text" name="post_title" id="post_title"> Title
+        <div class="container" id="request_container">
+            <!-- <label><b>Request Title</b></label><br> -->
+            <input type="text" name="post_title" id="post_title" placeholder="Request title"> 
 
             
-            <label><b>Brief Description</b></label><br>
+            <!-- <label><b>Request Description</b></label><br> -->
 
             <textarea class="form-control" rows="5" cols="60" placeholder="Give a brief description of your request" id="post_desc" name="post_desc" required></textarea><br>
             
-            <label><b>Upload an Image</b></label><br>
+            <!-- <label><b>Upload an Image</b></label><br> -->
             
             <input type="hidden" name="image1" id="uploadedimage">
 
             <button class="btn btn-outline-dark" type="file" id="uploaddemobutton" required>Upload Your Image</button><br> <br>
-    
 
-            <button type="submit">Update</button>
+            <button type="submit" style="border-radius: 10px;">Update</button>
     
         </div>    
     </form>
 
 
 
-
+<!-- 
      <h1 style="text-align: center; margin-top: 50px;">Your images</h1>
         <div class="recipient_section3 container">
             <div id="photocontainer">
@@ -283,28 +245,9 @@ height: 400px;
                 <label >Upload another image</label>
                 <input type="file" name="newimage" id="newimage">  
             </div>
-        </div>
+        </div> -->
  
     
-        <div class="recipient_section3 container"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
@@ -357,34 +300,10 @@ height: 400px;
 
 let btnClk=document.getElementById('clicker');
 btnClk.addEventListener('click',function(){
-    document.getElementById('welcome').innerHTML='wjat';
+    document.getElementById('welcome').innerHTML='what';
 })
 
 </script> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

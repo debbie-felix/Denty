@@ -3,7 +3,7 @@
 {% block content %}
 <style>
 
-    #recipient_section{
+    #profile_section{
     /* border: 2px solid #902d56; */
     border-radius: 10px;
     display: flex;
@@ -25,7 +25,7 @@
     #profilepic_container{
         border-radius: 10px;
         /* border: 1px solid darkseagreen; */
-        height: 400px;
+        height: 350px;
         width: 300px;
         margin: auto;
        
@@ -34,7 +34,7 @@
     #profilepic{
         border-radius: 10px;
         /* border: 1px solid darkseagreen; */
-        height: 400px;
+        height: 350px;
         width: 300px;
         margin: auto;
         
@@ -48,19 +48,23 @@
     }
     
     #rec_right_container{
-        /* border: 1px solid lightgray; */
-        height: 450px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        height: 350px;
         width: 200px;
-        margin: auto;
+        margin-top: 10px;
+        padding-left: 20px;
+        padding-top: 10px;
+        
         flex: 2;
 
     }
-    #recipient_section2{
+    #decription_section{
     /* border: 2px solid #902d56; */
     border-radius: 10px;
-    display: flex;
+    /* display: flex; */
     margin-top: 50px;
-    height: 500px;
+    height: 200px;
     background-color: #e6eced;
     }
 
@@ -87,7 +91,7 @@ a:hover{
 </style>
 
 
-    <div class="container" id="recipient_section">
+    <div class="container" id="profile_section">
         <div id="rec_left_container"> 
             <div id="rec_left_content">
                 <div id="profilepic_container">
@@ -99,23 +103,30 @@ a:hover{
                 </div>
                 <div id="location">
                 <i class="fas fa-map-marker-alt" style="color: red;"></i>
-                <span>Lagos</span>
+                <span>{{rec_id.state}}</span>
                 </div>
             </div>
 
         </div>
             
         <div id="rec_right_container">
-        <h1>TARGET: <span style="font-size: 23px;">₦</span>{{rec_id.amount}}</h1>
-        <h1>DONATIONS: {{donations_stats.number_of_donations}}</h1>
-        <h1>RAISED: {{donations_stats.total_donations}} </h1><br>
-
-   
-        <div class="progress"> 
-            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{percentage_raised}}%
+            <h2>TARGET - <span style="font-size: 18px;">₦</span>{{rec_id.amount}}</h2>
+            <h2>DONATIONS - {{donations_stats.number_of_donations}}</h2>
+            <h2>RAISED - <span style="font-size: 18px;">₦</span>{{donations_stats.total_donations}} </h2><br><br>
+        
+            {% if percentage_raised == False %}
+            <div class="progress"> 
+                <div class="progress-bar" role="progressbar" style="width: 100%; background: rgb(185, 183, 183);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
-        </div>
+            {% else %}
+            <div class="progress"> 
+
+                <div class="progress-bar" role="progressbar" {{percentage_raised_css|safe}} aria-valuenow="{{percentage_raised}}" aria-valuemin="0" aria-valuemax="100">{{percentage_raised}}%</div>
+            </div>
+            {% endif %}
         <input type="hidden" id="recipientIdForDonation" value="{{rec_id.rec_id}}" />
+        <input type="hidden" id="userIdForDonation" value="{{loggedin_user_id}}" />
+        <input type="hidden" id="recipientEmailForDonation" value="{{rec_id.email}}" />
         <a href="#" onClick="makePayment()"> 
             <div>
                 <p id="donatenow">Donate</p>
@@ -126,8 +137,9 @@ a:hover{
         
     </div>
 
-    <div class="container" id="recipient_section2">
-        <h1>DESCRIPTION</h1>
+    <div class="container" id="decription_section">
+        
+        <h2> {{rec_id.post_description}}<h2>
     </div>
 
 

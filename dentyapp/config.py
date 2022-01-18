@@ -1,6 +1,5 @@
 PASSWORD='1236'
 SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://debbie2@127.0.0.1:8889/denty' 
-
 MERCHANT_ID='UUFHFIUHF34567'
 DEBUG=True
 ADMIN_EMAIL='debbiefelix2@gmail.com'

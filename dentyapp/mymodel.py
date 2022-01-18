@@ -34,7 +34,9 @@ class Recipients(db.Model):
     password=db.Column(db.String(255),nullable=False, server_default='')
     phone=db.Column(db.String(20),nullable=False)
     address=db.Column(db.String(100),nullable=False)
-    post_title = db.Column(db.String(10), nullable=False)
+    city=db.Column(db.String(100),nullable=False)
+    state=db.Column(db.String(100),nullable=False)
+    post_title = db.Column(db.String(50), nullable=False)
     post_description = db.Column(db.String(255), nullable=True)
     amount = db.Column(db.String(30), nullable=True)
     post_image=db.Column(db.String(100),nullable=False)
@@ -42,7 +44,6 @@ class Recipients(db.Model):
 
     # post=db.relationship("Posts")
     # status=db.relationship("Status")
-
 
 
 
@@ -67,7 +68,13 @@ class Donations(db.Model):
     donation_date= db.Column(db.DateTime(), default= datetime.datetime.utcnow)
     post_id = db.Column(db.Integer(),db.ForeignKey('posts.post_id'))
     recipient_id = db.Column(db.Integer(), db.ForeignKey('recipients.rec_id'))
+    donor_id = db.Column(db.Integer(), db.ForeignKey('users.user_id'))
 
+
+    
+class States(db.Model):
+    id=db.Column(db.Integer(),primary_key=True,autoincrement=True)
+    name=db.Column(db.String(50),nullable=False)  
 
 db.create_all()
 db.session.commit()

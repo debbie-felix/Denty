@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block content %}
+{% block content %} 
 
 <p style="text-align: center; font-size: 30px; margin-top: 50px;">Hello, {{session.get('user')}}!</p>
 <div class="container">
@@ -12,48 +12,42 @@
 
 <div class="container">
     <div id="total_donations" class="tabcontent">
-        <h3>Woohoo! You have made 3 donations, so far.</h3>
+        <h3>You have made {{donations.number_of_donations}} donation(s), so far.</h3>
         <h3>Thank you for your support!</h3>
     </div>
 
     <div id="donated_amount" class="tabcontent">
-        <h3>You have donated a total of <span style="font-size: 15px;">₦</span>10,000 to 3 patients.</h3> 
-        <h3>You are a Champ!</h3>
+        <h3 id="total_donations_recipients">You have donated a total of <span style="font-size: 15px;">₦</span>{{donations.total_donations}} to {{donations.total_donations_recipients}} Recipient(s).</h3> 
+        <h3>You are a Champ!</h3> 
     </div>
 
     <div id="saved_campaigns" class="tabcontent">
-        <h3>Check Out The Progress Of Your Saved Campaigns</h3>
+        <h3>Your Saved Campaigns Will Be Displayed Here</h3>
     </div>
 
     <div id="campaign_history" class="tabcontent">
+       
         <table class="table table-striped" style="color: white;">
             <thead style="font-size: 30px;">
                 <tr>
                     <th>Campaign</th>
+                    <th>Donation</th>
                     <th>Amount</th>
                 </tr> 
             </thead>
-
+            
             <tbody style="font-size: 25px;">
+                {%for stats in donorstats %}
                 <tr>
-                    <td><a href="#">Otto Needs Surgery...</a></td>
-                    <td><span style="font-size: 15px;">₦</span>3,000</td>
+                    <td><a href="{{url_for('recipient_profile', id=stats.recipient_id)}}">{{stats.recipient_id}}</a></td>
+                    <td>{{stats.number_of_donations}}</td>
+                    <td><span style="font-size: 15px;">₦</span>{{stats.total_donations}}</td>
                 </tr>
-                <tr>
-                    <td><a href="#">Otto Needs Surgery...</a></td>
-                    <td><span style="font-size: 15px;">₦</span>2,000</td>
-                </tr>
-                <tr>
-                    <td><a href="#">Otto Needs Surgery...</a></td>
-                    <td><span style="font-size: 15px;">₦</span>4,000</td>
-                </tr>
-                <tr>
-                    <td><a href="#">Otto Needs Surgery...</a></td>
-                    <td><span style="font-size: 15px;">₦</span>1,000</td>
-                </tr>
+                {%endfor%}
                 <tr style="color: black;">
                     <td>Total</td>
-                    <td><span style="font-size: 15px;">₦</span>10,000</td>
+                    <td>{{donations.number_of_donations}}</td>
+                    <td><span style="font-size: 15px;">₦</span>{{donations.total_donations}}</td>
                 </tr>
             </tbody>
         </table>

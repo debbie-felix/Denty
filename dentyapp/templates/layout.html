@@ -14,12 +14,22 @@
 	<link  href="{{url_for('static',filename='finalproject.css')}}" rel="stylesheet" type="text/css">
 
 	<title>   
-		{% block title%}
-		{% endblock title%}
+		Denty
 	</title>
 </head>	
 <body>
+
+	
 	<div id="contactmenu">	
+		<!-- <div class="toast" data-delay="2000">
+                
+			<div class="alert alert-primary" role="alert">
+			  Thanks for signing up on Denty! You rock! 🤘
+			</div>
+		</div> -->
+		<!-- {% if invalidEmail %}
+			<h1>Invalid email, please enter a valid email</h1>
+			{% endif %} -->
 		<div id="emptydiv"></div>
 			<div id="contactbox">
 				<a href="#" class="contact" style="text-decoration: none">info@denty.ng</a>
@@ -34,8 +44,18 @@
 		</div>
 	</div>
 
+	<!-- <div class="topnav" id="myTopnav">
+		<a href="javascript:void(0);" class="icon" onclick="myTop()">
+		  <i class="fa fa-bars"></i>
+		</a>
+	
+	</div> -->
 
-		<div id="navbarcontainer">
+	
+		<!-- <a href="#home" class="active">Denty</a> -->
+
+<!-- <div class="topnav">hello</div> -->
+	  <div class="navbarcontainer">
 			<div id="logobox">
 					<span id="dent">
 						<a href="/">DENT<i class="fas fa-tooth" id="tooth"></i>
@@ -47,40 +67,27 @@
 					<li>
 						<a href="{{url_for('home')}}">Home</a>
 					</li>
-					<!-- <li>
-						<a href="#">Services</a>
-					</li> -->
-					<!-- <li>
-						<a href="#">Work</a>
-					</li> -->
 					<li>
 						<a href="{{url_for('about')}}">About</a>
 					</li>
 					<li>
 						<a href="{{url_for('blog')}}">Blog</a>
 					</li>
-					<!-- <li>
-						<a href="/contact">Contact</a>
-					</li> -->
 					<li>
 						<a href="{{url_for('start_campaign')}}">Start A Campaign</a>
 					</li>
 				</ul>
-			
-			
-			
 			</div>
-
-
-
-				<div class="dropdown">
-					
+				<div class="dropdown" >
+					<div style="white-space: nowrap; width: 150px; overflow: hidden; text-overflow: ellipsis;">
 					<i onclick="myFunction()" class="far fa-user dropbtn"> 
 						<span style="font-size: 12px;">Hello</span>
 						<!-- {% if session.get('user') != None %} -->
 						<span style="font-size: 12px;">{{session.get('user')}}</span>
 						<!-- {% endif %} -->
+						
 					</i>
+					</div>
 					<div id="myDropdown" class="dropdown-content">
 						{% if session.get('user') != None %}
 							<a href="{{url_for('logout')}}">Logout</a>
@@ -88,9 +95,7 @@
 							<a href="{{url_for('giver_account')}}">My Account</a>
 							{% else %}
 							<a href="{{url_for('recipient_account')}}">My Account</a>
-							{% endif %}
-
-
+						{% endif %}
 
 
 
@@ -98,92 +103,54 @@
 						<!-- <a href="{{url_for('login')}}" onclick="document.getElementById('id01').style.display='block'">Login</a> -->
 						<a href="#"  onclick="document.getElementById('id03').style.display='block'">Login</a>
 
+						
 						<!-- The Modal -->
-						<div id="id03" class="modal">
-							<span onclick="document.getElementById('id03').style.display='none'"
-							class="close" title="Close Modal">&times;</span>
-			
-							<!-- Modal Content -->
-							<form class="modal-content animate" method="POST" action="{{url_for('login')}}">
-								<!-- <div class="imgcontainer">
-								<img src="img_avatar2.png" alt="Avatar" class="avatar">
-								</div> -->
-			
-								<div class="container">
-								
-									<div class="form-group">
-										<label for="user_option">Login As:</label><br>
-										<select name="usertype" style="width: 300px;">
-											<option>Choose</option>
-											<option value="give">Giver</option>
-											<option value="receive">Recipient</option>
-										</select>
-									</div>
-										
-			
-								<label for="email"><b>Email</b></label>
-								<input type="text" placeholder="Enter Email" name="email" required>
-			
-								<label for="psw"><b>Password</b></label>
-								<input type="password" placeholder="Enter Password" name="password" required>
-			
-								<button type="submit">Login</button>
-								<label>
-									<input type="checkbox" checked="checked" name="remember"> Remember me
-								</label>
-								</div>
-			
-								<div class="container" style="background-color:#f1f1f1">
-								<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
-								<span class="password">Forgot <a href="#">password?</a></span>
-								</div>
-						
-							</form>
+			<div id="id03" class="modal">
+				<span onclick="document.getElementById('id03').style.display='none'"
+				class="close" title="Close Modal">&times;</span>
+
+				<!-- Modal Content -->
+				<form class="modal-content animate" method="POST" action="{{url_for('login')}}">
+					<div class="container">	
+						<div class="form-group">
+							<label for="user_option" style="color: black;">Login As:</label>
+							<select name="usertype" style="width: 300px; font-size: 15px;">
+								<option>Choose</option>
+								<option value="give">Giver</option>
+								<option value="receive">Recipient</option>
+							</select>
 						</div>
+							
+
+						<!-- <label for="email"><b>Email</b></label> -->
+						<input type="text" placeholder="Enter Email" name="email" required>
+
+						<!-- <label for="psw"><b>Password</b></label> -->
+						<input type="password" placeholder="Enter Password" name="password" required>
+							
+						<button style="width: 150px; height: 50px;" type="submit">Login</button>
+						<!-- <label>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label> -->
+					</div>
+
+					<div class="container" style="background-color:#f1f1f1">
+					<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+					<!-- <span class="password">Forgot <a href="#">password?</a></span> -->
+					</div>
+			
+				</form>
+			</div>
+	
 						
-						<!-- Button to open the modal SIGNUP form -->
+			<!-- Button to open the modal SIGNUP form -->
 			<!-- <button id="signupbar" onclick="document.getElementById('id02').style.display='block'">Signup</button> -->
 			<a href="#"  onclick="document.getElementById('id02').style.display='block'">Signup</a>
 
-			<!-- The Modal -->
-			<div id="id02" class="modal">
-			<span onclick="document.getElementById('id02').style.display='none'"
-			class="close" title="Close Modal">&times;</span>
-
-			<!-- Modal Content -->
-			<form class="modal-content animate" method="POST" action="{{url_for('signup')}}">
-			
-				<div class="container">																
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<input type="text" placeholder="Enter Firstname" name="fname" required>
-						</div>
-
-						<div class="form-group col-md-6">
-							<input type="text" placeholder="Enter Lastname" name="lname" required>
-						</div>
-			
-					</div>
-			
-					<input type="text" placeholder="Enter Email" name="email" required>
-					<input type="password" placeholder="Enter Password" name="password" required>
-
-					<button type="submit">Signup</button>
-					<label>
-						<input type="checkbox" checked="checked" name="remember"> Remember me
-					</label>
-				</div>
-
-				<div class="container" style="background-color:#f1f1f1">
-				<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
-				</div>
-			</form>
-			
-			</div>
+			 
 			{% endif %}
-				</div>
-				</div>
+		</div>
+	</div>
 				
 
 				<!-- <a href=""><div><i class="far fa-user"></i>
@@ -194,14 +161,18 @@
 				<span id="donate_box">
 					<a href="{{url_for('donate')}}" id="donate" style="text-decoration: none;">Donate</a>
 				</span>
-		
-			</div>
-
+				
+				
+				<!-- <a href="javascript:void(0);" class="icon" onclick="myTop()">
+					<i class="fa fa-bars"></i>
+				</a> -->
 		</div>
+
+		
 
 
 {% block content %}
-	
+
 	<div class="container-fluid section1">	
 		
 		<div class="leftcontainer">
@@ -238,15 +209,59 @@
 			<span id="topimage5"></span>
 			<span id="topimage6"></span>
 			<span id="topimage7"></span>
-
+			
+             
 
 			{% if session.get('user') != None %}
-			<p id="readytogivesomeone">Welcome, {{session.get('user')}}</p>
+			<h1 style="font-size: 30px; text-align: center;">Welcome, {{session.get('user')}}</h1>
+			<h1 style="font-size: 30px; text-align: center;">Make Someone Smile Today.</h1><br><br>
+			
+	
+			{% elif signupsuccessful %} 
+			<p id="readytogivesomeone">Thank you, for signing up!</p>
+			
+			<!-- Button to open the modal LOGIN form -->
+			<button id="loginbar" onclick="document.getElementById('id01').style.display='block'" style="margin-left: 180px;" >Login</button>
 
-			{% endif %}
+			<!-- The Modal -->
+			<div id="id01" class="modal">
+				<span onclick="document.getElementById('id01').style.display='none'"
+				class="close" title="Close Modal">&times;</span>
 
+				<!-- Modal Content -->
+				<form class="modal-content animate" method="POST" action="{{url_for('login')}}">
+					<div class="container">	
+						<div class="form-group">
+							<label for="user_option">Login As:</label><br>
+							<select name="usertype" style="width: 300px;">
+								<option>Choose</option>
+								<option value="give">Giver</option>
+								<option value="receive">Recipient</option>
+							</select>
+						</div>
+							
 
-			{% if session.get('user') == None %}
+						<!-- <label for="email"><b>Email</b></label> -->
+						<input type="text" placeholder="Enter Email" name="email" required>
+
+						<!-- <label for="psw"><b>Password</b></label> -->
+						<input type="password" placeholder="Enter Password" name="password" required>
+
+						<button type="submit">Login</button>
+						<!-- <label>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label> -->
+					</div>
+
+					<div class="container" style="background-color:#f1f1f1">
+					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+					<!-- <span class="password">Forgot <a href="#">password?</a></span> -->
+					</div>
+			
+				</form>
+			</div>
+			
+			{% else %} 
 			<p id="readytogivesomeone">Ready To Give Someone A Brighter Smile?</p>
 			
 			<!-- <span id="loginbar"><a href="login">LOGIN</a></span> -->
@@ -261,12 +276,7 @@
 
 				<!-- Modal Content -->
 				<form class="modal-content animate" method="POST" action="{{url_for('login')}}">
-					<!-- <div class="imgcontainer">
-					<img src="img_avatar2.png" alt="Avatar" class="avatar">
-					</div> -->
-
-					<div class="container">
-					
+					<div class="container">	
 						<div class="form-group">
 							<label for="user_option">Login As:</label><br>
 							<select name="usertype" style="width: 300px;">
@@ -277,21 +287,21 @@
 						</div>
 							
 
-					<label for="email"><b>Email</b></label>
-					<input type="text" placeholder="Enter Email" name="email" required>
+						<!-- <label for="email"><b>Email</b></label> -->
+						<input type="text" placeholder="Enter Email" name="email" required>
 
-					<label for="psw"><b>Password</b></label>
-					<input type="password" placeholder="Enter Password" name="password" required>
+						<!-- <label for="psw"><b>Password</b></label> -->
+						<input type="password" placeholder="Enter Password" name="password" required>
 
-					<button type="submit">Login</button>
-					<label>
-						<input type="checkbox" checked="checked" name="remember"> Remember me
-					</label>
+						<button type="submit">Login</button>
+						<!-- <label>
+							<input type="checkbox" checked="checked" name="remember"> Remember me
+						</label> -->
 					</div>
 
 					<div class="container" style="background-color:#f1f1f1">
 					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-					<span class="password">Forgot <a href="#">password?</a></span>
+					<!-- <span class="password">Forgot <a href="#">password?</a></span> -->
 					</div>
 			
 				</form>
@@ -310,47 +320,35 @@
 			
 				<div class="container">
 				
-					<div class="form-row">
-						<div class="form-group col-md-6">
-						  <label for="inputEmail4">Email</label>
-						  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-						</div>
-						<div class="form-group col-md-6">
-						  <label for="inputPassword4">Password</label>
-						  <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-						</div>
-					  </div>
-				
-				
-				
-				
-				
 				
 					<!-- <label for="fname"><b>Firstname</b></label> -->
-				<input type="text" placeholder="Enter Firstname" name="fname" required>
+				<input type="text" placeholder="Firstname" name="fname" required>
 
 				<!-- <label for="fname"><b>Lastname</b></label> -->
-				<input type="text" placeholder="Enter Lastname" name="lname" required>
+				<input type="text" placeholder="Lastname" name="lname" required>
 	
 				<!-- <label for="email"><b>Email</b></label> -->
-				<input type="text" placeholder="Enter Email" name="email" required>
-
-				<!-- <label for="phone"><b>Phone Number</b></label> -->
-				<input type="text" placeholder="Enter Phone No." name="phone" required>
+				<input type="text" placeholder="Email" name="email" required>
 				
 				<!-- <label for="psw"><b>Password</b></label> -->
-				<input type="password" placeholder="Enter Password" name="password" required>
-
+				<input type="password" placeholder="Password" name="password" id="password" required>
+				
+				<div class="toast"  data-delay="5000">
+                
+					<div class="alert alert-warning" role="alert">
+					  <h5>Password must contain at least one uppercase character, one lowercase character, one special character, and one number.</h5>
+					</div>
+				</div>
 				
 				<button type="submit">Signup</button>
-				<label>
+				<!-- <label>
 					<input type="checkbox" checked="checked" name="remember"> Remember me
-				</label>
+				</label> -->
 				</div>
 
 				<div class="container" style="background-color:#f1f1f1">
 				<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-				<span class="psw">Forgot <a href="#">password?</a></span>
+				<!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
 				</div>
 			</form>
 			
@@ -419,7 +417,7 @@
 		<div id="sec3_left_content">
 			<h1 style="font-size: 40px; font-style: oblique;"><b>We believe you can do much good with a little token</b></h1><br>
 			<div id="donations_received">
-				<h1 id="smallbox1" style="font-size: 50px;">20,000</h1><h4>Total Donations</h4>
+				<h1 id="smallbox1" style="font-size: 50px;">2000</h1><h4>Total Donations</h4>
 			</div>
 
 
@@ -428,7 +426,7 @@
 			</div>
 
 			<div id="trending_campaigns">
-				<h1 id="smallbox3" style="font-size: 50px;">10,000</h1><h4>Trending Campaigns</h4>
+				<h1 id="smallbox3" style="font-size: 50px;">100</h1><h4>Trending Campaigns</h4>
 			</div>
 
 			<div id="reviews">
@@ -442,7 +440,7 @@
 	
 	<div id="sec3_right_container">
 		<div id="sec3_right_content">
-			<p style="font-size: 30px;">Give Your Support</p>
+			<h1><b>Give Your Support</b></h1>
 			<p style="font-size: 30px;">Oral diseases affect people throughout their lifetime, causing pain, discomfort, disfigurement and even death. - WHO</p>
 			<a href="{{url_for('donate')}}">
 				<div>
@@ -493,23 +491,21 @@
 					{% else %}
 					<img src='/static/dentyimages/cavities.png' class="card-img-top" alt="Card image cap">
 					{% endif %}
- 
+		
 					<div class="card-body">
 						
-						<h5 class="card-title">{{recipient.post_title}}</h5>
-						
-						<p class="card-text">{{recipient.post_description }}</p>
+						<h3 class="card-title" style="font-size: 30px;">{{recipient.post_title}}</h3>     
+						          
+						<h4 class="card-text" style="font-size: 30px;white-space: nowrap; width: 250px; overflow: hidden; text-overflow: ellipsis;">{{recipient.post_description }}</h4>
 					</div>
 					
-					<div class="progress">
-						<div class="progress-bar" role="progressbar" style= "width: 65%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">65%
-						</div>
-					</div>
 					
-					<div class="card-footer">
-						<small class="text-muted">Last donation 25 mins ago</small>
+					<div class="card-footer amount">
+						<h3 style="font-size: 25px;"> Target: {{recipient.amount}}</h3>
+
 					</div>
-					<a href="javascript:void()" onClick="makePayment()">
+					<input type="hidden" id="recipientIdForDonation" value="{{recipient.rec_id}}" />
+					<a href= "{{url_for('recipient_profile', id=recipient.rec_id)}}" onClick="makePayment()"> 
 						<div>
 							<span class="card-donate-now">Donate Now</span>
 						</div>
@@ -580,6 +576,33 @@
 	<script src="{{url_for('static', filename='finalproject.js')}}"></script>
 	<script src="https://checkout.flutterwave.com/v3.js"></script>
 
+	<script>
+
+		$(document).ready(function(){
+		  $("#password").click(function(){
+			$('.toast').toast('show');
+		  });
+		});
+		
+		$(document).ready(function(){
+		  $("#password").mouseout(function(){
+			$('.toast').toast('hide');
+		  });
+		});
+		
+		</script>
+
+
+<!-- <script>
+function myTop() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script> -->
 </body>
 </html>
 

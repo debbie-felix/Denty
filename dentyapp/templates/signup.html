@@ -5,4 +5,81 @@
 
 {% block content %}
 
+<!-- <div class="toast" data-delay="2000">
+                
+			<div class="alert alert-primary" role="alert">
+			  Thanks for signing up on Denty! You rock! 🤘
+			</div>
+		</div> -->
+
+
+
+<div class="container">
+{% with x = get_flashed_messages() %}
+	{% if x %}
+
+	{% for msg in x %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<h4>{{msg}}</h4>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>	
+	</div>
+	{% endfor %}
+	{% endif %}
+{% endwith %}
+</div>
+
+<form class="modal-content animate" method="POST" action="{{url_for('signup')}}">
+
+	<div class="container">
+		
+			
+	<input type="text" placeholder="Firstname" name="fname" required>
+
+	<!-- <label for="fname"><b>Lastname</b></label> -->
+	<input type="text" placeholder="Lastname" name="lname" required>
+	<!-- <label for="email"><b>Email</b></label> -->
+	<input type="text" placeholder="Email" name="email" required>
+
+	<!-- <label for="psw"><b>Password</b></label> -->
+	<input type="password" placeholder="Password" name="password" id="password" required>
+	<div class="toast"  data-delay="10000">
+                
+		<div class="alert alert-warning" role="alert">
+		  <h5>Password must contain at least one uppercase character, one lowercase character, one special character, and one number.</h5>
+		</div>
+	</div>
+	<button type="submit">Signup</button>
+	<!-- <label>
+		<input type="checkbox" checked="checked" name="remember"> Remember me
+	</label> -->
+	</div>
+
+	<div class="container" style="background-color:#f1f1f1">
+	<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+	<!-- <span class="password">Forgot <a href="#">password?</a></span> -->
+	</div>
+
+</form>
+</div>
+
+
+
+<script>
+
+	$(document).ready(function(){
+	  $("#password").click(function(){
+		$('.toast').toast('show');
+	  });
+	});
+	
+	$(document).ready(function(){
+	  $("#password").mouseout(function(){
+		$('.toast').toast('hide');
+	  });
+	});
+	
+	</script>
+	
+
 {% endblock content %}

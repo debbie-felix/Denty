@@ -1,13 +1,211 @@
 {% extends 'layout.html' %}
 
 
- 
+
 {% block content %}
-<div class="jumbotron">
+
+<style>
+    /* Add a black background color to the top navigation */
+.topnav {
+  background-color: black;
+  overflow: hidden;
+
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+
+
+.dropbtns {
+color: white;
+padding: 16px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+}
+
+.dropbtns:hover, .dropbtns:focus {
+	color: #8f2d56;
+}
+  
+.dropdowns {
+margin-right: 30px;
+margin-top: 4px;
+color: #ffffff;
+font-size: 20px;
+/* position: relative; */
+/* display: inline-block; */
+}
+  
+.dropdown-contents {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+overflow: auto;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+
+}
+  
+.dropdown-contents a {
+color: black;
+padding-left: 12px;
+text-decoration: none;
+display: block;
+font-size: 25px;
+}
+  
+.dropdown a:hover 
+{background-color: #ddd;
+}
+  
+.show {display: block;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+
+<div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Home</a>
+    <a href="#news">About</a>
+    <a href="#contact">Blog</a>
+    <a href="#about">Start A Campaign</a>
+    <a href="javascript:void(0);" class="icon" onclick="myTopNav()">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a class="dropdowns">
+					
+        <i onclick="myProfileIcon()" class="far fa-user dropbtns"> 
+            <span style="font-size: 12px;">Hello</span>
+            <!-- {% if session.get('user') != None %} -->
+            <span style="font-size: 12px;">{{session.get('user')}}</span>
+            <!-- {% endif %} -->
+
+        </i>
+        <div id="myDropdowns" class="dropdown-content">
+            
+                <a href="{{url_for('logout')}}">Logout</a>
+                
+                <a href="{{url_for('giver_account')}}">My Account</a>
+               
+                <a href="{{url_for('recipient_account')}}">My Account</a>
+
+        </div>
+
+    </a>
+
+
+
+<!-- <div class="jumbotron">
 <h1 style="text-align: center;">Our Vision</h1>
 <p style="text-align: center; font-size: 30px; width: 700px; margin: auto;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero impedit itaque id natus quaerat odio accusamus voluptatibus cupiditate, distinctio est, temporibus quibusdam dolor voluptatum veniam consequatur, blanditiis saepe facere alias.</p>
 <div id="aboutusimage"></div>
-</div>
+</div> -->
+<script>
+    function myTopNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+
+
+
+
+<script>
+    function myProfileIcon() {
+    document.getElementById("myDropdowns").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtns')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock content %}
 

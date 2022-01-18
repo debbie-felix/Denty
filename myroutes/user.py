@@ -1,14 +1,15 @@
-import os,json,random,re
-import urllib.request
-from flask import render_template,url_for,session,request,redirect,flash,abort,send_from_directory,jsonify
+from flask import render_template,url_for,session,request,redirect,flash,abort,send_from_directory,jsonify,make_response
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import true
+from sqlalchemy.sql import text
+from email_validator import validate_email, EmailNotValidError
 from sqlalchemy import func
-from flask.wrappers import Response
-import mysql.connector
+from werkzeug.security import generate_password_hash,check_password_hash
 from werkzeug.utils import secure_filename
 from dentyapp.forms import Signup
-from dentyapp import app,db
-from dentyapp.mymodel import Recipients, Users, Posts, Donations
+from dentyapp import app,db,mail,Message
+from dentyapp.mymodel import Recipients, Users, Posts, Donations, States
+
 
 
 
@@ -27,98 +28,88 @@ def home():
     else:
         return render_template('index.html', recipients=y)
 
+@app.route('/test')
+def testmail():
 
-
-
-
+    msg=Message(subject='Testing Mail', sender='debbiefelix2@gmail.com', recipients=['beepearl89@gmail.com'])
+    f = open ('requirements.txt')
+    msg.html = '<div><h1>Welcome on Board</h1</div>'
+    
+    msg.attach("requirements.txt", "application/text", f.read())
+    mail.send(msg)
+    return 'mail sent'
 
 @app.route('/about/')
 def about():
     return render_template('about.html')
 
+
 @app.route('/blog/')
 def blog():
     return render_template('blog.html')
 
-@app.route('/donor_user/giver')
-def giver():
-    return render_template('/donor_user/giver.html')
-
-    
-@app.route('/receive_user/recipient')
-def recipient():
-    return render_template('/receive_user/recipient.html')
-
-
-
 
 @app.route('/recipient/recipient_account/', methods = ['POST', 'GET'])
 def recipient_account():
+    if request.method =='GET' and session.get('user') == None:
+        return render_template('start_campaign.html')
     loggedin_user  = session.get('user')
+    y = db.session.query(Recipients).get(session.get('userid'))
+    total_donations_amount = func.sum(Donations.amount).label('total_donations')
+    total_donations_count = func.count(Donations.id).label('number_of_donations')
+    donations_stats = db.session.query(Donations, total_donations_amount, total_donations_count).filter_by(recipient_id=session.get('userid')).group_by(Donations.recipient_id).first()
     if loggedin_user:
-        y= db.session.query(Recipients).get(loggedin_user)
-
-        return render_template('/recipient/recipient_account.html',y=y)
+        return render_template('/recipient/recipient_account.html',y=y,donations=donations_stats)
     else:
-        # return render_template('/recipient/recipient_account.html',y=y)
-
-        return redirect(url_for('login'))
-
-
+        return render_template('login.html')
 
 
 
 
 @app.route('/recipient/recipient_profile/<id>')
 def recipient_profile(id):
+        
         rec_id = db.session.query(Recipients).get(id)
-
         total_donations_amount = func.sum(Donations.amount).label('total_donations')
         total_donations_count = func.count(Donations.id).label('number_of_donations')
         donations_stats = db.session.query(Donations, total_donations_amount, total_donations_count).filter_by(recipient_id=rec_id.rec_id).group_by(Donations.recipient_id).first()
-
         # set percentage raised value initially to 0
         percentage_raised = 0
-        
+        loggedin_user_id = session.get('userid')
         if donations_stats:
-          percentage_raised = ((donations_stats.total_donations) / float(rec_id.amount) ) * 100
+            percentage_raised = ((donations_stats.total_donations) / float(rec_id.amount) ) * 100
         
         percentage_raised = round(percentage_raised, 2)
-        percentage_raised_css = "width:"+str(percentage_raised)+"%;"
-
-
-        return render_template('recipient/recipient_profile.html',rec_id=rec_id, donations_stats=donations_stats, percentage_raised=percentage_raised, percentage_raised_css=percentage_raised_css)
-
+        percentage_raised_css = "style=\"width: "+str(percentage_raised)+"%;\""
+        return render_template('recipient/recipient_profile.html',loggedin_user_id=loggedin_user_id,rec_id=rec_id, donations_stats=donations_stats, percentage_raised=percentage_raised, percentage_raised_css=percentage_raised_css)
 
 
 
 @app.route('/support/giver_account',methods = ['POST', 'GET'])
 def giver_account():
-    loggedin_user = session.get('user')
+    if request.method =='GET' and session.get('user') == None:
+        return render_template('login.html')
+    loggedin_user  = session.get('user')
+    loggedin_user_id = session.get('userid')
+    user = db.session.query(Users).get(session.get('userid'))
+    rec = db.session.query(Recipients).get(session.get('userid'))
+    total_donations_recipients = func.sum(Donations.recipient_id).label('total_donations_recipients')
+
+    total_donations_amount = func.sum(Donations.amount).label('total_donations')
+    total_donations_count = func.count(Donations.id).label('number_of_donations')
+    donations_stats = db.session.query(Donations,total_donations_recipients, total_donations_amount, total_donations_count).filter_by(donor_id=session.get('userid')).group_by(Donations.donor_id).first()
+
+    sqltext = text('SELECT SUM(amount) as total_donations, COUNT(id) as number_of_donations, recipient_id FROM donations WHERE donor_id=:did GROUP BY donor_id, recipient_id')
+    donorstats = db.session.execute(sqltext, {'did':session.get('userid')}).fetchall()
+    # for r in donorstats:
+    #     print(r['total_donations']) # Access by positional index
+    #     print(r['number_of_donations']) # Access by positional index
+    #     print(r['recipient_id']) # Access by positional index
     if loggedin_user:
-        user= db.session.query(Users).get(loggedin_user)
-
-        return render_template('/support/giver_account.html',user=user)
+        return render_template('/support/giver_account.html',donorstats=donorstats,loggedin_user_id=loggedin_user_id,user=user,rec=rec,donations=donations_stats)
     else:
-        return redirect(url_for('login'))
-
+        return render_template('login.html')
     
-    
-    # if loggedin :
-    #     return render_template('/support/giver_account.html')
-
-    # if session.get('user') !=None: 
-    #     if request.method=='GET':
-    #         return render_template('login.html')
-    # #     email = session.get('user')
-    # #     password = session.get('password')
-    #     else:
-    #         return redirect(url_for('giver_account'))
-
-            
-    # else:
-    #     return redirect(url_for('login'))
-
 
     
 
@@ -128,43 +119,76 @@ def signup():
         fname = request.form.get('fname')
         lname = request.form.get('lname')
         email = request.form.get('email')
+        # if email:
+        existing_user = Users.query.filter(Users.email == email).first()
+        if existing_user:
+            flash(f'{email} already exists! Please try again.')    
+            return render_template('signup.html')
+        try:
+            emailIsValid = validate_email(email)
+            email = emailIsValid.email
+        except EmailNotValidError as e:
+            invalidEmail = true
+            flash('Invalid Email. Please Try Again')
+            return render_template('signup.html', invalidEmail=invalidEmail)
+
         password = request.form.get('password')
-        # phone = request.form.get('phone')
-        # age = request.form['age']
-        
-        my_data = Users(fname=fname, lname=lname, email=email, password=password)
+        formated = generate_password_hash(password)
+        if not len(password) >= 8 and '[a-z A-Z 0-9 ~`!@#$%^&*()-_+=[]|\;:"<>,./?]' not in password:
+            flash('Password must be at least 8 characters long, and must contain at least one uppercase character, one lowercase character, one special character, and one number.')
+            return render_template('signup.html')
+
+        my_data = Users(fname=fname, lname=lname, email=email, password=formated)
         db.session.add(my_data)
         db.session.commit()
 
-        flash("Thank you for signing up")
-        return render_template('index.html')
+        return render_template('index.html',signupsuccessful=1)
     else:
+        flash('Please Sign Up')
         return render_template('signup.html')
 
 
 
-@app.route('/recipient_signup', methods = ['GET','POST'])
-def recipient_signup():
+@app.route('/start_campaign/', methods = ['GET','POST'])
+def start_campaign():
     if request.method == 'POST':
         fname = request.form.get('fname')
         lname = request.form.get('lname')
         email = request.form.get('email')
+        existing_user = Recipients.query.filter(Recipients.email == email).first()
+        if existing_user:
+            flash(f'{email} already exists! Please try again.')   
+            return render_template ('start_campaign.html')
+        try:
+            emailIsValid = validate_email(email)
+            email = emailIsValid.email
+        except EmailNotValidError as e:
+            invalidEmail = true
+            flash(f'Invalid {email}! Please try again.')   
+            return render_template('start_campaign.html', invalidEmail=invalidEmail)
+
         password = request.form.get('password')
-        phone = request.form.get('phone')
+        
+        if (len(password)<8) and '[a-z A-Z 0-9 ~`!@#$%^&*()-_+=[]|\;:"<>,./?]' not in password:
+            flash('Password must be at least 8 characters long, and must contain at least one uppercase character, one lowercase character, one special character, and one number.')
+            return redirect (url_for('start_campaign'))
+
+        formated = generate_password_hash(password)
         address = request.form.get('address')
-        # image = request.form.get('image')  
+        city = request.form.get('city')
+        state = request.form.get('state')
+        phone = request.form.get('phone')
         post_title = request.form.get('post_title')
         post_description = request.form.get('post_desc')
         amount = request.form.get('amount')
         post_image = request.form.get('post_image')    
-        my_data = Recipients(fname=fname, lname=lname, email=email, password=password, phone=phone, address=address,post_title=post_title,post_description=post_description,amount=amount, post_image=post_image)
+        my_data = Recipients(fname=fname, lname=lname, email=email, password=formated, phone=phone, address=address,city=city,state=state,post_title=post_title,post_description=post_description,amount=amount, post_image=post_image)
         db.session.add(my_data)
         db.session.commit()
 
-        flash("Thank you for signing up")
-        return render_template('index.html')
+        return render_template('index.html', signupsuccessful=1)
     else:  
-        return render_template('recipient_signup.html')
+        return render_template('start_campaign.html')
 
 
 
@@ -177,12 +201,15 @@ def signup_successful():
 
 
 
-@app.route('/payment_successful',methods = ['POST', 'GET'])
+@app.route('/payment_successful/',methods = ['POST', 'GET'])
 def payment_successful():
     if request.method =='GET':
         return render_template('index.html')
-    else:
+    loggedin_user  = session.get('user')
+    if loggedin_user:
         return render_template('payment_successful.html')
+    else:
+        return render_template('index.html')
 
        
 
@@ -191,6 +218,7 @@ def payment_successful():
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method =='GET':
+        flash('login')
         return render_template('login.html')
     else:  
         email = request.form.get('email')
@@ -198,10 +226,13 @@ def login():
         usertype = request.form.get('usertype','') 
         if usertype =='give':
             x = db.session.query(Users).filter(Users.email==email).filter(Users.password==password).first()
+            
             if x:
                 # session['user'] = email
                 loggedin_user = x.fname
-                session['user'] = loggedin_user 
+                session['user'] = loggedin_user
+                session['userid'] = x.user_id
+                session['usertype'] = usertype
                 
             return redirect(url_for('giver_account'))
         elif usertype =='receive':
@@ -210,10 +241,11 @@ def login():
                 # session['user'] = email
                 loggedin_user = x.fname
                 # session['image'] = x.user_id
+                session['userid'] = x.rec_id
                 session['user'] = loggedin_user
-            return redirect(url_for('recipient_account')) 
+            return redirect(url_for('recipient_account'))
         else:
-            flash('The username/password is incorrect')
+            flash('Email/password is incorrect. Please try again.')
             return render_template('login.html')
 
 
@@ -245,8 +277,10 @@ def donate():
 def donations():
     amount = request.form.get('amount') 
     status = request.form.get('status')
-    recipient = request.form.get('recipient')   
-    amt = Donations(amount=amount, status=status, recipient_id=recipient)
+    recipient = request.form.get('recipient') 
+    user = request.form.get('user') 
+    amt = Donations(amount=amount, status=status, recipient_id=recipient,donor_id=user)
+    
     db.session.add(amt)
     db.session.commit()
     return jsonify(saved=1,id=amt.id)
@@ -256,15 +290,7 @@ def donations():
 
 
 
-
-
-@app.route('/start_campaign/')
-def start_campaign():
-    return render_template('start_campaign.html')
-
-
-
-@app.route('/user/submitajax',methods=['GET','POST'])
+@app.route('/start_campaign/',methods=['GET','POST'])
 def submitajax():
     loggedin=session.get('user')
     if loggedin != None:
@@ -283,235 +309,3 @@ def submitajax():
 
 
 
-
-
-
-
-# @app.route('/recipient/recipient_posts/', methods = ['POST', 'GET'])
-# def recipient_posts():
-#     loggedin_user  = session.get('user')
-#     if loggedin_user:
-#         # y = db.session.query(Posts).get(loggedin_user)
-#         post_title = request.form.get('post_title')
-#         post_description = request.form.get('post_desc')
-#         image1 = request.form.get('image1')    
-#             # all=db.session.query(Posts).all()
-#             # data = db.session.query(Posts,Recipients).join(Recipients).all()
-#         x = Posts(post_title=post_title,post_description=post_description,image1=image1,recipient_id=loggedin_user)
-#         flash(f'Description added!', category='success')
-
-#         db.session.add(x)
-#         db.session.commit()
-#         return render_template('/recipient/recipient_account.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @app.route('/recipient/retrieve/')
-# def retrieve():
-#     loggedin = session.get('user')
-#     if loggedin != None:
-#         all = db.session.query(Posts,).all()
-    
-    
-    
-    
-    # data = db.session.query(Recipients,Posts).join(Recipients).all()
-
-    # cur = mysql.connection.cursor()
-    # cur.exexcute('SELECT * FROM posts where id =%s""',(id,))
-    # data = cur.fetchall()
-    # cur.close()
-    # return render_template('/recipient/recipient_profile.html',data=data,all=all)
-    
-    
-    
-    
-    # loggedin_user =session.get('user')
-    # if loggedin_user != None:
-    #     data =db.session.query(Posts).get(loggedin_user)
-    #     return render_template('/recipient/recipient_profile.html',data=data)  
-    # else:
-    #     return 'Display'  
-
-    
-        
-        
-        
-        
-        
-        
-        #  retrieve=x.fetchall()
-     
-#      x = Posts(post_description=post_description, image1=image1)
-# #         if x:
-# #             loggedin_user = x
-# #             session['user'] = loggedin_user 
-# #             session['image1'] = image1       
-# #             db.session.add(x)
-# #             db.session.commit()
-# #             return render_template('/recipient/recipient_account.html')
-
-#     # q = db.session.query(Survey, Person, Question, Answer).filter(Person.survey_id == Survey.survey_id,Question.survey_id == Survey.survey_id,Answer.question_id == Question.question_id).all()
-#     print(ans)
-#     return 'OK'
-
-    
-    
-  
-   
-
-   
-   
-   
-   
-   
-   
-     
-
-
-
-#         # db.session.query(Recipients, Posts, Status).join(Buyer, Buyer.buyer_id == Company.id).all()
-#         # db.session.query(Recipients, Posts, Status).join(Recipients, Posts.post_id == Recipients.id).all()
-
-#         x = Posts(post_description=post_description, image1=image1)
-#         if x:
-#             loggedin_user = x
-#             session['user'] = loggedin_user 
-#             session['image1'] = image1       
-#             db.session.add(x)
-#             db.session.commit()
-#             return render_template('/recipient/recipient_account.html')
-
-        
-#     else:
-#         return render_template('signup.html')
-
-
-    
-# @app.route('/available/',methods=['GET','POST'])
-# def available():
-#     if request.method=='GET':
-#         records = db.session.query(Tbl_state).all()
-#         return render_template('available.html', records=records)
-#     else:
-#         user = request.form.get('user')
-#         deets = db.session.query(Users).filter(Users.email==user).all()
-#         if deets:
-#             rsp = {"msg":"you have registered with this email","status":"failed"}
-#             return json.dumps(rsp)
-#         else:
-#             rsp = {"msg":"username available","status":"success"}
-#             return json.dumps(rsp)
-
-
-
-
-    
-# @app.route('/lga/',methods=['GET','POST'])
-# def lga():
-#     state = request.args.get('state_id')
-#     data = db.session.query(Lga).filter(Lga.state_id==state).all()
-
-#     tosend = "<select class='form-control' name=''>"
-#     for t in data:
-#         tosend = tosend + f'<option>{t.lga_name}</option>'
-#     tosend =tosend+'</select>'
-
-#     return tosend
-
-
-
-
-
-# @app.route('/login',methods=['GET','POST'])
-# def login():
-#     if request.method =='GET':
-#         return render_template('login.html')
-#     else:    
-#         email = request.form.get('email')
-#         password = request.form.get('password')
-#         x = db.session.query(Users).filter(Users.email==email).filter(Users.password==password).first()
-
-#         if x:
-#             session['user'] = email
-#             loggedin_user = x.fname
-#             session['user'] = loggedin_user
-#             session['image'] = x.image
-#             usertype = request.form.get ('usertype','')
-#             if usertype =='give':
-#                     return redirect(url_for('giver_account'))
-#             elif usertype == 'receive':
-#                     return redirect(url_for('recipient_account')) 
-#         else:
-#             flash('The username/password is incorrect')
-#             return render_template('login.html')
-
-
-
-
-
-
-
-            
-    
-    
-    # newfile = Recipients(image=file.filename, data=file.read())
-    # db.session.add(newfile)
-    # db.session.commit()
-    # flash('successful')
- 
-    # return redirect(url_for('uploads')) 
-
-
-
-# @app.route('/<int:id>')
-# def get_img():
-#     img = image.query.filter_by(id=id).first()
-#     if not img:
-#         return 'No img with that id'
-#     else:
-#         return Response(img.img,imgtype=img.imgtype)
-
-
-
-# @app.route("/update", methods =['GET', 'POST'])
-# def update():
-#     msg = ''
-#     if 'user' in session:
-#         if request.method == 'POST' and 'fname' in request.form and 'password' in request.form and 'email' in request.form and 'address' in request.form and 'city' in request.form and 'country' in request.form and 'postalcode' in request.form and 'organisation' in request.form:
-#             fname = request.form['username']
-#             password = request.form['password']
-#             email = request.form['email']
-#             address = request.form['address']
-#             city = request.form['city']
-#             state = request.form['state']
-#             country = request.form['country']    
-#             postalcode = request.form['postalcode'] 
-#             cursor = db.session.query(Recipients).all()
-#             cursor.execute('SELECT * FROM recipients WHERE fname = % s', (fname ))
-#             account = cursor.fetchone()
-#             if account:
-#                 msg = 'Account already exists !'
-#             elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-#                 msg = 'Invalid email address !'
-#             elif not re.match(r'[A-Za-z0-9]+', username):
-#                 msg = 'name must contain only characters and numbers !'
-#             else:
-#                 cursor.execute('UPDATE accounts SET  username =% s, password =% s, email =% s, organisation =% s, address =% s, city =% s, state =% s, country =% s, postalcode =% s WHERE id =% s', (username, password, email, organisation, address, city, state, country, postalcode, (session['id'], ), ))
-#                 mysql.connection.commit()
-#                 msg = 'You have successfully updated !'
-#         elif request.method == 'POST':
-#             msg = 'Please fill out the form !'
-#         return render_template("update.html", msg = msg)
-#     return redirect(url_for('login'))

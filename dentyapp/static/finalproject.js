@@ -16,6 +16,10 @@ function myFunction() {
     }
   }
 
+  
+
+
+//-------------------------MODAL-------------------------
 
   // Get the modal
 var modal = document.getElementById('id01');
@@ -99,16 +103,17 @@ window.onclick = function(event) {
   }
   
   // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
+  let defaultOpenElem = document.getElementById("defaultOpen");
+  defaultOpenElem && defaultOpenElem.click();
 
 
   $('.carousel').carousel()
 
 
-  //----------------------------- recipient PAGE-------------
+  //----------------------------- recipient Account-------------
 
 
-  function openCity(evt, cityName) {
+  function openContent(evt, contentName) {
     // Declare all variables
     var i, reccontent, reclinks;
   
@@ -125,7 +130,7 @@ window.onclick = function(event) {
     }
   
     // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(contentName).style.display = "block";
     evt.currentTarget.className += " active";
   }
 
@@ -137,7 +142,13 @@ window.onclick = function(event) {
 function makePayment() {
   let recipientIdForDonation = document.getElementById('recipientIdForDonation');
   recipientIdForDonation = recipientIdForDonation && recipientIdForDonation.value;
-  let amount = 50;
+  let userIdForDonation = document.getElementById('userIdForDonation');
+  userIdForDonation = userIdForDonation && userIdForDonation.value;
+  
+  let recipientEmailForDonation = document.getElementById('recipientEmailForDonation');
+  recipientEmailForDonation = recipientEmailForDonation && recipientEmailForDonation.value;
+  //recipientEmailForDonation
+  let amount = '';
   // if(recipientIdForDonation) {
   //   //Only do specific donate prompt when on donate page
   //   amount = prompt('How much do you want to donate?');
@@ -145,26 +156,26 @@ function makePayment() {
   
   var checkoutfunc = FlutterwaveCheckout({
     public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
-    tx_ref: "RX1"+ Date.now(),
+    //public_key: "FLWPUBK-6013f760b6f8d0a5d153d2b5fdd6dabf-X",
+    
+
+    tx_ref: "DENTYDONATION_"+ Date.now()+`_${Math.random()}`.replace('.', ''),
     amount: amount * 1,
     currency: "NGN",
     country: "NG",
     payment_options: " ",
-    /*redirect_url: "http://127.0.0.1:5000/payment_successful", */
     meta: {
       consumer_id: 23,
       consumer_mac: "92a3-912ba-1192a",
     },
     customer: {
-      email: "beepearl89@gmail.com",
-      phone_number: "08067353992",
-      name: "Debbie",
+      email: recipientEmailForDonation || ("beepearl89@gmail.com")
     },
     callback: function (data) {
-      console.log(data);
+      console.log(data, $, $.post, typeof $.post);
       if(data && data.status === 'successful' && recipientIdForDonation) {
         
-        $.post('/donations', {amount: data.amount, status: data.status, recipient: recipientIdForDonation * 1});
+        $.post('/donations', {user:userIdForDonation, amount: data.amount, status: data.status, recipient: recipientIdForDonation * 1});
         checkoutfunc.close();
         alert('Thanks for your donation');
         window.location.reload();
@@ -185,10 +196,12 @@ function makePayment() {
       title: "Denty",
       description: "Donation for a campaign ",
       logo: 
-      "https://assets.piedpiper.com/logo.png",
+      "https://cdn.glitch.me/dc8ab110-74e1-408a-9e10-7d7591b2ab97/cavities.png?v=1640395467791",
     },
   });
 }
+
+
 
 
 
