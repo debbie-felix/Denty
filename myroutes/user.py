@@ -223,9 +223,10 @@ def login():
     else:  
         email = request.form.get('email')
         password = request.form.get('password')
+        formated = generate_password_hash(password)
         usertype = request.form.get('usertype','') 
         if usertype =='give':
-            x = db.session.query(Users).filter(Users.email==email).filter(Users.password==password).first()
+            x = db.session.query(Users).filter(Users.email==email).filter(Users.password==formated).first()
             
             if x:
                 # session['user'] = email
@@ -236,7 +237,7 @@ def login():
                 return render_template('support/giver_account.html')
             # return redirect(url_for('giver_account'))
         elif usertype =='receive':
-            x = db.session.query(Recipients).filter(Recipients.email==email).filter(Recipients.password==password).first()       
+            x = db.session.query(Recipients).filter(Recipients.email==email).filter(Recipients.password==formated).first()       
             if x:
                 # session['user'] = email
                 loggedin_user = x.fname
