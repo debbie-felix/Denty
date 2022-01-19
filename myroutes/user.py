@@ -233,8 +233,8 @@ def login():
                 session['user'] = loggedin_user
                 session['userid'] = x.user_id
                 session['usertype'] = usertype
-                
-            return redirect(url_for('giver_account'))
+                return render_template('support/giver_account.html')
+            # return redirect(url_for('giver_account'))
         elif usertype =='receive':
             x = db.session.query(Recipients).filter(Recipients.email==email).filter(Recipients.password==password).first()       
             if x:
@@ -243,7 +243,8 @@ def login():
                 # session['image'] = x.user_id
                 session['userid'] = x.rec_id
                 session['user'] = loggedin_user
-            return redirect(url_for('recipient_account'))
+            return render_template('recipient/recipient_account.html')
+            # return redirect(url_for('recipient_account'))
         else:
             flash('Email/password is incorrect. Please try again.')
             return render_template('login.html')
